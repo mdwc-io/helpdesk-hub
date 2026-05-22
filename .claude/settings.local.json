@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npx create-astro@latest . --template minimal --no-git --no-install --yes)",
+      "Bash(mv /Users/martinclarke/Desktop/helpdesk-hub/interstellar-ice/* /Users/martinclarke/Desktop/helpdesk-hub/)",
+      "Bash(mv /Users/martinclarke/Desktop/helpdesk-hub/interstellar-ice/.* /Users/martinclarke/Desktop/helpdesk-hub/)",
+      "Bash(rmdir /Users/martinclarke/Desktop/helpdesk-hub/interstellar-ice)",
+      "Bash(npm install *)",
+      "Bash(npx astro *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}
