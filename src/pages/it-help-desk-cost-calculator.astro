@@ -1,0 +1,130 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import CostCalculator from "../components/CostCalculator.tsx";
+---
+
+<Layout
+  title="UK IT Help Desk Cost Calculator 2026 | HelpDesk Hub"
+  description="Compare the true annual cost of Freshdesk, Zoho Desk, Freshservice, HubSpot Service Hub, LiveAgent and Zendesk for UK teams. Adjust agent count and plan tier to get a side-by-side price breakdown."
+>
+  <!-- Breadcrumb -->
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">Cost Calculator</li>
+    </ol>
+  </nav>
+
+  <!-- Page header -->
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      UK IT Help Desk Cost Calculator
+    </h1>
+    <p class="text-lg text-gray-600 max-w-2xl">
+      Enter your team size and plan tier to see a live, side-by-side annual cost comparison for the most popular help desk platforms available in the UK. No sign-up required.
+    </p>
+  </div>
+
+  <!-- Affiliate disclosure — required by UK ASA / CMA rules -->
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <!-- The calculator (React island — client:load so it's interactive immediately) -->
+  <CostCalculator client:load />
+
+  <!-- What this calculator covers -->
+  <section class="mt-14 border-t border-gray-200 pt-10 space-y-6">
+    <h2 class="text-2xl font-bold text-gray-900">How to use this calculator</h2>
+    <div class="grid sm:grid-cols-3 gap-6 text-sm text-gray-700">
+      <div class="space-y-2">
+        <div class="font-semibold text-gray-900">1. Set your agent count</div>
+        <p>Drag the slider to match the number of staff who will actively log in to handle tickets. Don't count managers who only occasionally check — most plans charge per active seat.</p>
+      </div>
+      <div class="space-y-2">
+        <div class="font-semibold text-gray-900">2. Pick a plan tier</div>
+        <p>Start at <strong>Starter / Entry</strong> — this covers the basics for most small UK teams. Move to <strong>Professional</strong> if you need SLAs, advanced automation, or detailed reporting.</p>
+      </div>
+      <div class="space-y-2">
+        <div class="font-semibold text-gray-900">3. Read the verdict</div>
+        <p>The calculator highlights the cheapest option for your exact configuration. Use the links in the table to verify current pricing and start a free trial with any product.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What drives cost -->
+  <section class="mt-10 space-y-4">
+    <h2 class="text-2xl font-bold text-gray-900">What drives UK help desk software costs?</h2>
+    <div class="prose prose-gray max-w-none text-sm text-gray-700 space-y-3">
+      <p>
+        Most help desk platforms charge <strong>per agent per month</strong>, so your team size is the biggest lever on price. A team of 10 agents pays roughly 10× a single-agent licence — unlike some SaaS tools that charge per company.
+      </p>
+      <p>
+        <strong>Plan tier</strong> is the second lever. The gap between Entry and Professional can be 2–6×. The upgrade usually buys you: stricter SLA management, better automation, more granular reporting, and (on ITSM tools) change/release management. For most UK SMEs with under 15 agents, a Starter or Growth plan covers 90% of needs.
+      </p>
+      <p>
+        <strong>Annual vs monthly billing</strong> typically saves 15–20%. The figures above use monthly billing as the baseline — switch to annual billing at sign-up to reduce the actual cost.
+      </p>
+      <p>
+        <strong>Add-ons:</strong> AI copilots, advanced analytics, and extra storage are charged separately on most platforms. These are not included in this calculator — budget an additional 10–30% if you expect to use them.
+      </p>
+    </div>
+  </section>
+
+  <!-- Schema: FAQ -->
+  <section class="mt-10 space-y-4">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">Which is the cheapest IT help desk software for UK teams?</dt>
+        <dd class="mt-1">Zoho Desk and LiveAgent are consistently the cheapest paid options per agent. Freshdesk's free tier is the best starting point for teams under 5 agents who need basic email ticketing. Run the calculator above with your actual team size for a precise comparison.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Are these prices in GBP?</dt>
+        <dd class="mt-1">Yes — all prices are shown in GBP. Most vendors bill in USD and convert at the time of payment, so the actual GBP charge will fluctuate slightly with the exchange rate. Zoho and Freshworks do offer GBP billing directly for UK customers.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">What's the difference between helpdesk and ITSM software?</dt>
+        <dd class="mt-1">A <strong>helpdesk</strong> tool manages customer-facing or internal support tickets. An <strong>ITSM</strong> (IT Service Management) tool does that plus ITIL-aligned processes: change management, asset tracking, incident vs problem management, a CMDB. If you run an internal IT department and need to track hardware or manage change requests, you want ITSM. If you're supporting customers, a helpdesk is usually enough.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Do these tools store data in the UK?</dt>
+        <dd class="mt-1">Freshdesk, Freshservice, Zoho Desk, HubSpot, and Zendesk all offer EU (including UK-equivalent) data residency on paid plans. This is important for UK public sector, healthcare, and education buyers post-Brexit. Always confirm data residency options during your trial before signing a contract.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- Schema markup -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which is the cheapest IT help desk software for UK teams?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zoho Desk and LiveAgent are consistently the cheapest paid options per agent. Freshdesk's free tier is the best starting point for teams under 5 agents who need basic email ticketing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the prices shown in GBP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — all prices are shown in GBP. Most vendors bill in USD and convert at the time of payment, so the actual GBP charge will fluctuate slightly with the exchange rate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between helpdesk and ITSM software?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A helpdesk tool manages customer-facing or internal support tickets. An ITSM tool adds ITIL-aligned processes: change management, asset tracking, incident vs problem management, and a CMDB."
+        }
+      }
+    ]
+  })} />
+</Layout>

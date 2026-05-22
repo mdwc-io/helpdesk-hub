@@ -1,0 +1,22 @@
+---
+// UK ASA / CMA compliant affiliate disclosure. Required on every page with affiliate links.
+interface Props {
+  compact?: boolean; // use a smaller version on pages with less space
+}
+const { compact = false } = Astro.props;
+---
+
+{compact ? (
+  <p class="text-xs text-gray-500 bg-gray-50 border border-gray-200 rounded px-3 py-2">
+    <strong>Affiliate disclosure:</strong> Some links on this page are affiliate links. We may earn a commission if you sign up — this never affects our rankings or editorial opinions. <a href="/about#affiliate-disclosure" class="underline hover:text-blue-700">Learn more</a>
+  </p>
+) : (
+  <div class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 flex gap-3 items-start text-sm text-amber-900">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 mt-0.5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <div>
+      <strong>Affiliate disclosure:</strong> Some links on this page earn us a commission if you sign up for a paid plan, at no extra cost to you. This <strong>never</strong> affects our rankings, scores, or editorial opinions — we compare tools on their merits alone. <a href="/about#affiliate-disclosure" class="underline hover:text-blue-700 font-medium">See our full editorial policy →</a>
+    </div>
+  </div>
+)}
