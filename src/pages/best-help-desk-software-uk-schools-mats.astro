@@ -1,0 +1,161 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ComparisonTable from "../components/ComparisonTable.tsx";
+import { software } from "../data/software";
+
+const picks = [
+  software.find((s) => s.id === "freshdesk")!,
+  software.find((s) => s.id === "freshservice")!,
+  software.find((s) => s.id === "zoho-desk")!,
+];
+
+const tableProducts = software.filter((s) =>
+  ["freshdesk", "freshservice", "zoho-desk", "jira-service-management"].includes(s.id)
+);
+
+const verdicts: Record<string, string> = {
+  freshdesk:
+    "The most-used help desk in UK schools for good reason: simple enough for non-IT staff to raise tickets, flexible enough to handle both staff and student requests on separate portals, and affordable enough to survive a SFVS review. EU data hosting is available on Growth plans and above.",
+  freshservice:
+    "The upgrade path for MATs or larger schools with a dedicated IT team. Asset management (tracking every device across multiple sites) is built in, change management is ITIL-compliant, and you can manage several schools as separate entities within one account. It's more expensive — justify it against the time saved on manual IT audits.",
+  "zoho-desk":
+    "The budget pick for smaller schools or those already using G Suite or Zoho apps. Zoho tools are available through TechSoup for registered educational charities, which can cut the cost significantly. The UI is slightly less polished than Freshdesk but the fundamentals are solid.",
+};
+---
+
+<Layout
+  title="Best Help Desk Software for UK Schools & Multi-Academy Trusts (2026)"
+  description="Independent comparison of IT help desk and service desk software for UK schools, academies, and MATs. Covers ICO compliance, MIS integration, per-site management, and honest verdicts."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 flex-wrap">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">Best for UK Schools & MATs</li>
+    </ol>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      Best Help Desk Software for UK Schools & Multi-Academy Trusts (2026)
+    </h1>
+    <p class="text-sm text-gray-500">Last reviewed: May 2026 · By a UK IT &amp; Facilities Manager</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-sm text-blue-900 space-y-2">
+    <p class="font-semibold text-blue-800">Quick verdict</p>
+    <p>
+      <strong>Freshdesk</strong> is the right starting point for most UK schools — it handles staff and student requests cleanly, EU data hosting is available, and the pricing fits typical school IT budgets. For <strong>Multi-Academy Trusts</strong> managing IT across multiple sites, <strong>Freshservice</strong> adds the asset management and multi-site structure that a spreadsheet-run service desk genuinely can't replace. Zoho Desk is the budget alternative if TechSoup charity pricing applies to your academy trust.
+    </p>
+  </div>
+
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Our top picks for UK schools & MATs</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {picks.map((product, i) => (
+        <ProductCard
+          product={product}
+          verdict={verdicts[product.id]}
+          rank={i + 1}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Full comparison</h2>
+    <ComparisonTable client:visible products={tableProducts} />
+  </section>
+
+  <section class="mb-12 space-y-6">
+    <h2 class="text-2xl font-bold text-gray-900">What UK schools need from a help desk</h2>
+    <div class="space-y-5 text-sm text-gray-700">
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Separate staff and student portals</p>
+        <p>Schools often need to handle both staff IT requests and student-facing requests (lost logins, device faults) in one system, but with different workflows and visibility. Freshdesk handles this cleanly with multiple portals under one account. Most ITSM tools assume a single internal audience — they need workarounds to serve students separately.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">ICO and UK GDPR obligations</p>
+        <p>Schools are data controllers under UK GDPR and are regularly reviewed by the ICO. Any software that handles pupil data must be processed lawfully, with appropriate safeguards. Require your vendor to sign a Data Processing Agreement (DPA), and confirm EU or UK data residency — not just "GDPR compliant" language in a marketing brochure. Freshdesk, Freshservice, and Zoho Desk all provide DPAs on paid plans.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">MIS integration (SIMS, Bromcom, iSAMS)</p>
+        <p>None of the mainstream help desk tools natively integrate with UK MIS platforms out of the box. What you can do is use the API or Zapier/Make to sync user accounts from your MIS into Freshdesk or Freshservice, so staff don't need a separate login. This is a one-time setup task worth doing at the start — ask your IT support provider or contact each vendor's onboarding team.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Multi-site MAT management</p>
+        <p>If you're running IT across 3+ academies, you need a system that separates tickets by school while giving trust-level visibility to central IT. Freshservice's "workspaces" feature handles this well. Freshdesk can manage multiple portals but its cross-site reporting is less mature. Jira Service Management is powerful but requires an experienced Atlassian admin to configure properly — budget for that setup time.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">SFVS and budget pressure</p>
+        <p>The Schools Financial Value Standard scrutinises IT spending. Justify your help desk cost against time saved on manual tracking (email chains, spreadsheets), reduced duplication of work, and evidence of SLA compliance you can show Governors. For most schools, the entry-level plans (£10–15/agent/month) pay for themselves within a term.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+    <div class="flex-1">
+      <p class="font-semibold text-gray-900 mb-1">Calculate the annual cost for your school's IT team</p>
+      <p class="text-sm text-gray-600">Enter your agent count and plan tier for a live GBP comparison — useful for budget sign-off.</p>
+    </div>
+    <a href="/it-help-desk-cost-calculator" class="shrink-0 bg-blue-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">
+      Open Calculator →
+    </a>
+  </div>
+
+  <section class="space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">What is the best free help desk software for UK schools?</dt>
+        <dd class="mt-1">Freshdesk's free plan is the most practical option — no agent limit, no time limit, and the interface is simple enough for teachers to submit tickets via email or web form. Zoho Desk is free for up to 3 agents. Both lack SLA enforcement and detailed reporting, which matters more as your school grows.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Does our school need ITSM software or a basic help desk?</dt>
+        <dd class="mt-1">A single school with one or two IT staff and under 500 devices needs a help desk, not full ITSM. Once you're managing multiple sites, 1,000+ devices, a Chromebook rollout, or a network infrastructure with regular change windows, ITSM (Freshservice or Jira Service Management) starts paying for itself. Asset management alone is often worth the upgrade for MATs.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Can students submit IT tickets through these systems?</dt>
+        <dd class="mt-1">Yes — both Freshdesk and Zoho Desk let you create a self-service portal with a web form. Students submit via a link (or you embed it in your intranet), and tickets route to the right team. You can configure it so students can only see their own tickets, not those of staff.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="mt-12 border-t border-gray-200 pt-8">
+    <p class="text-sm font-semibold text-gray-900 mb-3">Also in this series</p>
+    <div class="flex flex-wrap gap-3 text-sm">
+      <a href="/best-help-desk-software-uk-charities" class="text-blue-700 hover:underline">Best for UK Charities →</a>
+      <a href="/best-help-desk-software-uk-msps" class="text-blue-700 hover:underline">Best for UK MSPs →</a>
+      <a href="/best-it-ticketing-uk-logistics-manufacturing" class="text-blue-700 hover:underline">Best for UK Logistics & Manufacturing →</a>
+      <a href="/it-help-desk-cost-calculator" class="text-blue-700 hover:underline">Cost Calculator →</a>
+    </div>
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the best free help desk software for UK schools?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Freshdesk's free plan is the most practical option — no agent limit, no time limit, and the interface is simple enough for teachers to submit tickets via email or web form." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does our school need ITSM software or a basic help desk?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A single school with one or two IT staff needs a help desk, not full ITSM. Once you're managing multiple sites, 1,000+ devices, or regular change windows, ITSM (Freshservice or Jira) starts paying for itself." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can students submit IT tickets through these systems?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — both Freshdesk and Zoho Desk let you create a self-service portal with a web form. Students submit via a link, and tickets route to the right team." }
+      }
+    ]
+  })} />
+</Layout>

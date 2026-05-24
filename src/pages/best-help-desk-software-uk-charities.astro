@@ -1,0 +1,169 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ComparisonTable from "../components/ComparisonTable.tsx";
+import { software } from "../data/software";
+
+const picks = [
+  software.find((s) => s.id === "zoho-desk")!,
+  software.find((s) => s.id === "freshdesk")!,
+  software.find((s) => s.id === "hubspot-service")!,
+];
+
+const tableProducts = software.filter((s) =>
+  ["freshdesk", "zoho-desk", "hubspot-service", "liveagent"].includes(s.id)
+);
+
+const verdicts: Record<string, string> = {
+  "zoho-desk":
+    "The best all-round choice for UK charities: genuinely affordable paid plans, EU data hosting for GDPR compliance, and a free tier that covers very small teams. Zoho also participates in TechSoup's charity pricing scheme — worth checking before you sign up.",
+  freshdesk:
+    "The safest starting point for micro-charities or those with no IT budget. The free plan handles email ticketing for up to any number of agents (feature-limited), and upgrading is straightforward if you grow. A well-known, trusted name that trustees won't question.",
+  "hubspot-service":
+    "Worth considering only if you're already using HubSpot CRM for donor management. The helpdesk and CRM share a single contact record, which is genuinely useful for supporter-journey visibility. Standalone, it's overpriced for most charities.",
+};
+---
+
+<Layout
+  title="Best Help Desk Software for UK Charities & Non-Profits (2026)"
+  description="Independent comparison of help desk software for UK charities and non-profits. Covers free tiers, GDPR compliance, TechSoup pricing, and honest verdicts from a UK IT professional."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 flex-wrap">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">Best for UK Charities</li>
+    </ol>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      Best Help Desk Software for UK Charities & Non-Profits (2026)
+    </h1>
+    <p class="text-sm text-gray-500">Last reviewed: May 2026 · By a UK IT &amp; Facilities Manager</p>
+  </div>
+
+  <!-- Verdict box — first 100 words, as required by §7 -->
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-sm text-blue-900 space-y-2">
+    <p class="font-semibold text-blue-800">Quick verdict</p>
+    <p>
+      <strong>Zoho Desk</strong> is the best help desk tool for most UK charities — it's the cheapest credible paid option (from ~£7/agent/month), offers EU data hosting for GDPR, and Zoho participates in TechSoup's charity pricing programme.
+      For micro-charities with zero budget, <strong>Freshdesk's free plan</strong> is genuinely usable with no time limit. Avoid Zendesk and enterprise ITSM tools unless you're a large housing association or national charity with a dedicated IT team.
+    </p>
+  </div>
+
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <!-- Top picks -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Our top picks for UK charities</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {picks.map((product, i) => (
+        <ProductCard
+          product={product}
+          verdict={verdicts[product.id]}
+          rank={i + 1}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Comparison table -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Full comparison</h2>
+    <ComparisonTable client:visible products={tableProducts} />
+  </section>
+
+  <!-- What matters for charities -->
+  <section class="mb-12 space-y-6">
+    <h2 class="text-2xl font-bold text-gray-900">What matters most for UK charities</h2>
+
+    <div class="space-y-5 text-sm text-gray-700">
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Budget — the real constraint</p>
+        <p>Most charities run IT on tight, board-approved budgets. A £15/agent/month tool for a 5-person support team is £900/year — that's a real line item that needs justification to trustees. This is why Zoho Desk and Freshdesk's free/entry tiers dominate the charity sector: they let you start practically free, prove the value internally, then upgrade with a business case.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">GDPR and UK data protection</p>
+        <p>Charities handle beneficiary and donor data, which makes ICO compliance non-negotiable. Look for vendors that offer <strong>EU or UK data residency</strong> (not just "GDPR compliant" marketing) and can sign a Data Processing Agreement (DPA). Freshdesk, Zoho Desk, and HubSpot all offer this on paid plans. LiveAgent's entry plans are US-hosted — clarify before signing.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Volunteer and non-technical staff</p>
+        <p>Charities often have part-time staff or volunteers who aren't IT-literate. The help desk tool needs to be genuinely simple to use without training. Freshdesk and Zoho Desk both score well here — the ticket submission experience is close to email, which staff already understand. Jira Service Management and Freshservice are too complex for this audience.</p>
+      </div>
+
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">TechSoup charity pricing</p>
+        <p>TechSoup (<a href="https://www.techsoup.org.uk" class="underline hover:text-blue-700" rel="nofollow noreferrer">techsoup.org.uk</a>) is a charity tech marketplace that negotiates discounted or donated software licences for registered charities. Zoho and some Microsoft/Google tools are available through TechSoup. Always check here before paying full price — it can reduce costs by 50–80%.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator CTA -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+    <div class="flex-1">
+      <p class="font-semibold text-gray-900 mb-1">Work out the actual annual cost for your team</p>
+      <p class="text-sm text-gray-600">Our free calculator shows you a side-by-side GBP comparison for your exact agent count — no sign-up required.</p>
+    </div>
+    <a href="/it-help-desk-cost-calculator" class="shrink-0 bg-blue-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">
+      Open Calculator →
+    </a>
+  </div>
+
+  <!-- FAQ -->
+  <section class="space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">Is there a free help desk software for UK charities?</dt>
+        <dd class="mt-1">Yes. Freshdesk's free plan has no time limit and no agent limit — you just get fewer features (no SLA rules, basic reports). Zoho Desk is free for up to 3 agents. HubSpot Service Hub has a free tier too. For most small charities, Freshdesk free is the right starting point.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Do charities get discounts on help desk software?</dt>
+        <dd class="mt-1">Some vendors offer charity pricing directly (ask during your trial), and Zoho tools are available through TechSoup at a significant discount for registered UK charities and CIOs. Freshworks doesn't currently offer a formal charity discount — but their entry pricing is low enough that it's rarely a blocker.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Which help desk software is GDPR-compliant for UK charities?</dt>
+        <dd class="mt-1">Freshdesk, Zoho Desk, HubSpot Service Hub, and Zendesk all offer EU data residency on paid plans and will sign a DPA. Always confirm data residency in writing before processing beneficiary or donor data, regardless of what the marketing page says.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- Internal links -->
+  <div class="mt-12 border-t border-gray-200 pt-8">
+    <p class="text-sm font-semibold text-gray-900 mb-3">Also in this series</p>
+    <div class="flex flex-wrap gap-3 text-sm">
+      <a href="/best-help-desk-software-uk-schools-mats" class="text-blue-700 hover:underline">Best for UK Schools & MATs →</a>
+      <a href="/best-help-desk-software-uk-msps" class="text-blue-700 hover:underline">Best for UK MSPs →</a>
+      <a href="/best-it-ticketing-uk-logistics-manufacturing" class="text-blue-700 hover:underline">Best for UK Logistics & Manufacturing →</a>
+      <a href="/it-help-desk-cost-calculator" class="text-blue-700 hover:underline">Cost Calculator →</a>
+    </div>
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is there a free help desk software for UK charities?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Freshdesk's free plan has no time limit and no agent limit. Zoho Desk is free for up to 3 agents. For most small charities, Freshdesk free is the right starting point." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do charities get discounts on help desk software?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Some vendors offer charity pricing directly, and Zoho tools are available through TechSoup at a significant discount for registered UK charities and CIOs." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which help desk software is GDPR-compliant for UK charities?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Freshdesk, Zoho Desk, HubSpot Service Hub, and Zendesk all offer EU data residency on paid plans and will sign a DPA." }
+      }
+    ]
+  })} />
+</Layout>

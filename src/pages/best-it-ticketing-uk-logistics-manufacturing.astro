@@ -1,0 +1,171 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ComparisonTable from "../components/ComparisonTable.tsx";
+import { software } from "../data/software";
+
+const picks = [
+  software.find((s) => s.id === "freshservice")!,
+  software.find((s) => s.id === "freshdesk")!,
+  software.find((s) => s.id === "jira-service-management")!,
+];
+
+const tableProducts = software.filter((s) =>
+  ["freshservice", "freshdesk", "jira-service-management", "zoho-desk"].includes(s.id)
+);
+
+const verdicts: Record<string, string> = {
+  freshservice:
+    "The strongest all-round choice for internal IT in UK logistics and manufacturing. Asset management covers everything from warehouse scanners to forklifts with a network connection; change management handles the controlled processes that a 24/7 operation demands; and the mobile app is good enough for a technician walking the shop floor. This is what I use, and it handles multi-site operations cleanly.",
+  freshdesk:
+    "The right tool if your service desk handles customer-facing logistics queries — shipment issues, collections, invoice disputes — rather than (or alongside) internal IT. Clean multichannel inbox, solid SLAs, and simple enough for non-IT customer service teams to use. Pair it with Freshservice for internal IT if the budget allows.",
+  "jira-service-management":
+    "Worth considering for logistics or manufacturing businesses that already run software development or engineering projects in Jira — the integration between engineering tickets and IT service requests is genuinely useful when your IT team and dev team share infrastructure. The learning curve is steep and it needs an experienced admin to configure; not the right first tool for a team that's moving off email.",
+};
+---
+
+<Layout
+  title="Best IT Ticketing Software for UK Logistics & Manufacturing (2026)"
+  description="Written by a UK IT & Facilities Manager who actually runs a logistics service desk. Covers shift-based support, multi-site operations, ERP integration, asset management, and honest product verdicts."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 flex-wrap">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">Best for UK Logistics & Manufacturing</li>
+    </ol>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      Best IT Ticketing Software for UK Logistics & Manufacturing (2026)
+    </h1>
+    <p class="text-sm text-gray-500">Last reviewed: May 2026 · Written by a UK IT &amp; Facilities Manager who runs a logistics service desk</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-sm text-blue-900 space-y-2">
+    <p class="font-semibold text-blue-800">Quick verdict — written from direct experience</p>
+    <p>
+      I run a service desk for a UK logistics and facilities operation. The requirements here are different from an office environment: shift patterns mean you need 24/7 ticket visibility without relying on email; warehouse staff submit tickets from handheld scanners, not desktops; and downtime on a conveyor control system or WMS is a P1 that costs real money per minute. <strong>Freshservice</strong> handles this environment better than anything else I've tested at this price point. Asset management, change management, and multi-site support in one tool, at a price a mid-size operation can justify.
+    </p>
+  </div>
+
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Top picks for UK logistics & manufacturing IT teams</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {picks.map((product, i) => (
+        <ProductCard
+          product={product}
+          verdict={verdicts[product.id]}
+          rank={i + 1}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Full comparison</h2>
+    <ComparisonTable client:visible products={tableProducts} />
+  </section>
+
+  <section class="mb-12 space-y-6">
+    <h2 class="text-2xl font-bold text-gray-900">What logistics & manufacturing IT teams actually need</h2>
+    <div class="space-y-5 text-sm text-gray-700">
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Shift-based operations and 24/7 visibility</p>
+        <p>A standard 9–5 helpdesk model fails in logistics. Night shift submits a ticket at 2am, day shift inherits it with no context, and the issue either gets duplicated or falls through the gap. Your ticketing tool needs to maintain a continuous thread regardless of which technician picks it up. Freshservice's ticket ownership and collision detection handles this well — two technicians can't accidentally work the same ticket in parallel without seeing each other. SLA clocks that respect your actual operating hours (24/7, or specific shift windows) are essential and configurable on the Growth plan and above.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Mobile access on the warehouse floor</p>
+        <p>Warehouse technicians don't carry laptops. Your ticketing tool needs a usable mobile app — not a pinch-to-zoom desktop site. Freshservice's mobile app is the strongest in this comparison: technicians can view, update, and close tickets without going back to a desk. Zoho Desk's mobile app is functional but its UI is less warehouse-friendly. Jira's mobile app is fine for engineers but confusing for non-technical techs.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Asset management for OT and IT equipment</p>
+        <p>In logistics and manufacturing, "IT assets" includes warehouse management system (WMS) terminals, barcode scanners, label printers, conveyor PLCs, CCTV systems, and any number of IoT sensors — not just laptops. Freshservice's CMDB lets you track all of these, link them to tickets (so you can see the history on a specific scanner), and set up automated alerts when a device goes offline. This is the feature that makes ITSM worth the cost over a plain helpdesk.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Change management for critical systems</p>
+        <p>Patching a WMS server during a live picking wave is how you cause a major incident. Formal change management — RFC submission, CAB review, approval workflow, and a rollback plan — prevents this. Freshservice's change management module gives you this process without needing to build it in a spreadsheet or Confluence page. In my experience, having a logged, approved change record also protects the IT team when things go wrong — you can show exactly what was authorised and when.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">ERP and WMS integration</p>
+        <p>Most WMS and ERP vendors (SAP, Oracle, Infor, Sage 200) don't have native helpdesk connectors. What you can do is use Freshservice's API to create tickets automatically when a WMS alert fires, or use a middleware tool like Zapier or Make to bridge them. This is a one-time setup task — worth doing early so that WMS errors land in your ticket queue automatically rather than a technician finding out about them by walking past a frozen screen.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Multi-site management</p>
+        <p>A single distribution centre is straightforward. Three sites across the UK, each with its own network, equipment, and local IT contacts, is where things get complicated. Freshservice's "workspaces" let you segment tickets by site while giving a central IT manager visibility across all of them. You can set site-specific SLAs (a P1 at your main DC has a shorter target than one at a satellite site) and route tickets to the right regional technician automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Personal note — owner's authority signal -->
+  <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-12">
+    <p class="font-semibold text-gray-900 mb-2">A note from the author</p>
+    <p class="text-sm text-gray-700">I've been running a service desk for a UK logistics and facilities management operation for several years. The content above reflects what I've actually encountered — not a theoretical comparison. If your operation looks different from what I've described (different WMS, different shift patterns, different scale), feel free to use the cost calculator and comparison table above to narrow down your options, then start a trial. All of these products offer at least a 14-day free trial. The "right" answer for your site will depend on specifics that no comparison page can fully account for.</p>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+    <div class="flex-1">
+      <p class="font-semibold text-gray-900 mb-1">Calculate the annual cost for your IT team</p>
+      <p class="text-sm text-gray-600">Enter your technician count and plan tier — useful for CAPEX proposals and budget sign-off.</p>
+    </div>
+    <a href="/it-help-desk-cost-calculator" class="shrink-0 bg-blue-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">
+      Open Calculator →
+    </a>
+  </div>
+
+  <section class="space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">What IT ticketing software works best for a UK distribution centre?</dt>
+        <dd class="mt-1">Freshservice is the strongest option for internal IT in a distribution centre — asset management, change management, mobile access, and multi-site support are all built in. For customer-facing logistics queries (shipping, collections), Freshdesk is better suited: it handles high ticket volumes across email, chat, and phone in one inbox.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Can warehouse staff submit IT tickets from a scanner or handheld device?</dt>
+        <dd class="mt-1">Yes — Freshdesk and Freshservice both offer a web-based ticket submission portal that works on any browser, including those on rugged Android handhelds and Zebra scanners. You can also set up an email-to-ticket address, so staff can submit a ticket by sending an email from any device. For a smoother experience, embed a short web form on your intranet or a QR code poster near each workstation.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">How do I track WMS and conveyor system assets in a help desk?</dt>
+        <dd class="mt-1">Freshservice's CMDB (Configuration Management Database) lets you create custom asset types — so you can track a Dematic conveyor controller the same way you'd track a laptop, with a service history, assigned owner, and linked tickets. You can import assets via CSV to get started quickly, then keep the database current using the Freshservice agent installed on networked devices, or manual updates for offline OT equipment.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="mt-12 border-t border-gray-200 pt-8">
+    <p class="text-sm font-semibold text-gray-900 mb-3">Also in this series</p>
+    <div class="flex flex-wrap gap-3 text-sm">
+      <a href="/best-help-desk-software-uk-charities" class="text-blue-700 hover:underline">Best for UK Charities →</a>
+      <a href="/best-help-desk-software-uk-schools-mats" class="text-blue-700 hover:underline">Best for UK Schools & MATs →</a>
+      <a href="/best-help-desk-software-uk-msps" class="text-blue-700 hover:underline">Best for UK MSPs →</a>
+      <a href="/it-help-desk-cost-calculator" class="text-blue-700 hover:underline">Cost Calculator →</a>
+    </div>
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What IT ticketing software works best for a UK distribution centre?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Freshservice is the strongest option for internal IT in a distribution centre — asset management, change management, mobile access, and multi-site support are all built in." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can warehouse staff submit IT tickets from a scanner or handheld device?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — both Freshdesk and Freshservice offer a web-based ticket submission portal that works on any browser, including rugged Android handhelds. You can also set up an email-to-ticket address." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I track WMS and conveyor system assets in a help desk?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Freshservice's CMDB lets you create custom asset types to track OT equipment like conveyor controllers alongside laptops, with full service history and linked tickets." }
+      }
+    ]
+  })} />
+</Layout>

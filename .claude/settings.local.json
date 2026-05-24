@@ -18,7 +18,11 @@
       "Bash(sleep 4 && cat /tmp/helpdeskhub-dev.log)",
       "Read(//private/tmp/**)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4322/)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4322/it-help-desk-cost-calculator)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4322/it-help-desk-cost-calculator)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(git remote *)",
+      "Bash(git push *)"
     ],
     "additionalDirectories": [
       "/Users/martinclarke/Desktop/helpdesk-hub/src"

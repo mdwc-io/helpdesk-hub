@@ -1,0 +1,156 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ComparisonTable from "../components/ComparisonTable.tsx";
+import { software } from "../data/software";
+
+const picks = [
+  software.find((s) => s.id === "freshdesk")!,
+  software.find((s) => s.id === "freshservice")!,
+  software.find((s) => s.id === "liveagent")!,
+];
+
+const tableProducts = software.filter((s) =>
+  ["freshdesk", "freshservice", "liveagent", "zendesk", "jira-service-management"].includes(s.id)
+);
+
+const verdicts: Record<string, string> = {
+  freshdesk:
+    "The best all-round helpdesk for growing UK MSPs. Multi-company support (separate portals and ticket queues per client), solid SLA management, and a price point that doesn't kill your margin on SME contracts. The PartnerStack affiliate programme also means your clients can sign up through your referral link — a small but useful secondary revenue stream.",
+  freshservice:
+    "The natural upgrade when your MSP starts winning contracts that require ITIL-aligned service delivery — typically public sector, financial services, or larger corporates who ask for it in the tender. Asset management, change advisory board workflows, and a CMDB are all built in. Expensive per agent but justifiable on contracts where mature ITSM is a requirement.",
+  liveagent:
+    "The budget pick for smaller MSPs (1–10 technicians) where cost-per-agent is a real constraint. Multichannel (email, live chat, phone) in one tool at a price that undercuts Freshdesk's entry tier. The UI is less polished and the multi-company features are more limited — fine for a handful of clients, starts to creak at scale.",
+};
+---
+
+<Layout
+  title="Best Help Desk Software for UK MSPs & IT Support Firms (2026)"
+  description="Independent comparison of help desk and ITSM software for UK Managed Service Providers. Covers multi-tenancy, SLA management, RMM integration, and honest per-agent pricing."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 flex-wrap">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">Best for UK MSPs</li>
+    </ol>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      Best Help Desk Software for UK MSPs & IT Support Firms (2026)
+    </h1>
+    <p class="text-sm text-gray-500">Last reviewed: May 2026 · By a UK IT &amp; Facilities Manager</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-sm text-blue-900 space-y-2">
+    <p class="font-semibold text-blue-800">Quick verdict</p>
+    <p>
+      <strong>Freshdesk</strong> is the best standalone helpdesk for most UK MSPs — multi-company support, strong SLAs, and pricing that doesn't destroy margin on SME contracts. When your clients start demanding ITIL-aligned service delivery (typically at public sector or enterprise level), <strong>Freshservice</strong> is the right upgrade. If you need a PSA or deep RMM integration, neither replaces ConnectWise or Autotask — but both integrate with them.
+    </p>
+  </div>
+
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Our top picks for UK MSPs</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {picks.map((product, i) => (
+        <ProductCard
+          product={product}
+          verdict={verdicts[product.id]}
+          rank={i + 1}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Full comparison</h2>
+    <ComparisonTable client:visible products={tableProducts} />
+  </section>
+
+  <section class="mb-12 space-y-6">
+    <h2 class="text-2xl font-bold text-gray-900">What UK MSPs need from a help desk</h2>
+    <div class="space-y-5 text-sm text-gray-700">
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Multi-tenancy — the non-negotiable</p>
+        <p>Every MSP's core requirement: the ability to manage multiple clients in one tool, with their tickets, contacts, SLAs, and assets completely separated from each other. Freshdesk's "Multiple Companies" feature handles this well on the Growth plan and above — each client gets their own portal, email address, and ticket queue. Zendesk offers the same but at 2–3× the price. LiveAgent's multi-brand feature is functional but less configurable.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">SLA management and breach alerting</p>
+        <p>Your contracts define response and resolution SLAs per client or per priority. Your helpdesk needs to enforce these automatically — escalating a P1 that's been sitting for 45 minutes without anyone noticing is how you lose contracts. Freshdesk's SLA policies are per-company and trigger email/SMS alerts on breach. Freshservice adds business-hours-aware SLA calendars, which matters if you have clients with different support windows.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">RMM and PSA integration</p>
+        <p>If you're using an RMM (ConnectWise Automate, Datto RMM, NinjaRMM) or a PSA (ConnectWise Manage, Autotask, HaloPSA), your helpdesk should integrate with it — not replace it. Freshdesk and Freshservice both have marketplace integrations for the major RMM/PSA platforms, but integration depth varies. Check the specific connector for your RMM before committing. HaloPSA is worth a look if you want a single tool that is both PSA and helpdesk, purpose-built for MSPs — it's not in this comparison because it's a different product category.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">White-labelling and client portals</p>
+        <p>Clients submitting tickets to "Freshdesk" undermines your brand. Freshdesk lets you customise the portal domain, logo, and colours per client — so it looks like your branded service desk. Freshservice does the same. Neither is fully white-labelled at the entry tier; check the plan limits. LiveAgent's white-label option is less polished.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Time tracking and billing</p>
+        <p>If you bill time-and-materials alongside any fixed contracts, your helpdesk should track time per ticket so it feeds into invoices. Freshdesk has basic time tracking built in on paid plans. For serious billing integration, most MSPs use their PSA (ConnectWise, Autotask, BrightGauge) rather than the helpdesk itself.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+    <div class="flex-1">
+      <p class="font-semibold text-gray-900 mb-1">Work out the cost per technician</p>
+      <p class="text-sm text-gray-600">Our cost calculator lets you compare annual GBP spend across all the major platforms for your team size — useful for proposals and renewals.</p>
+    </div>
+    <a href="/it-help-desk-cost-calculator" class="shrink-0 bg-blue-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">
+      Open Calculator →
+    </a>
+  </div>
+
+  <section class="space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">What is the best help desk software for small UK MSPs?</dt>
+        <dd class="mt-1">Freshdesk on the Growth plan covers most small MSPs (under 10 technicians) well — multi-company support, SLA management, and a client portal at a price that doesn't kill margin. LiveAgent is cheaper but multi-tenancy is less mature. Avoid Zendesk at this size — the price-to-feature ratio doesn't work for smaller MSPs.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Does Freshdesk replace ConnectWise or Autotask for MSPs?</dt>
+        <dd class="mt-1">No &mdash; Freshdesk is a helpdesk, not a PSA. ConnectWise Manage and Autotask PSA include project management, contract management, billing integration, and procurement workflows that a helpdesk doesn't cover. Most MSPs run both: a PSA for business operations and a helpdesk for ticket management, integrated via API or a marketplace connector.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">When should an MSP move from Freshdesk to Freshservice?</dt>
+        <dd class="mt-1">When a client contract requires ITIL-aligned service delivery — typically public sector, financial services, or enterprise clients who specify it in the tender. Freshservice adds a CMDB, formal change management, and problem management. It's also worth the upgrade if you're managing a significant device estate and want asset management built into the same tool as your ticketing.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="mt-12 border-t border-gray-200 pt-8">
+    <p class="text-sm font-semibold text-gray-900 mb-3">Also in this series</p>
+    <div class="flex flex-wrap gap-3 text-sm">
+      <a href="/best-help-desk-software-uk-charities" class="text-blue-700 hover:underline">Best for UK Charities →</a>
+      <a href="/best-help-desk-software-uk-schools-mats" class="text-blue-700 hover:underline">Best for UK Schools & MATs →</a>
+      <a href="/best-it-ticketing-uk-logistics-manufacturing" class="text-blue-700 hover:underline">Best for UK Logistics & Manufacturing →</a>
+      <a href="/it-help-desk-cost-calculator" class="text-blue-700 hover:underline">Cost Calculator →</a>
+    </div>
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the best help desk software for small UK MSPs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Freshdesk on the Growth plan covers most small MSPs well — multi-company support, SLA management, and a client portal at a price that doesn't kill margin." }
+      },
+      {
+        "@type": "Question",
+        "name": "When should an MSP move from Freshdesk to Freshservice?",
+        "acceptedAnswer": { "@type": "Answer", "text": "When a client contract requires ITIL-aligned service delivery — typically public sector, financial services, or enterprise clients. Freshservice adds a CMDB, formal change management, and asset management." }
+      }
+    ]
+  })} />
+</Layout>
