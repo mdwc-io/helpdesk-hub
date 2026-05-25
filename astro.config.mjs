@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://helpdeskhub.co.uk", // update this when your real domain is set
+  site: "https://helpdeskguide.co.uk",
   vite: {
     plugins: [tailwindcss()]
   },
