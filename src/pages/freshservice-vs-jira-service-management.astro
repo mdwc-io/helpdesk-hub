@@ -1,0 +1,224 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import { software } from "../data/software";
+
+const rows = [
+  { feature: "Free tier", freshservice: "No — paid plans only from Starter", jira: "Yes — up to 3 agents" },
+  { feature: "Entry paid plan", freshservice: "~£15/agent/mo (Starter)", jira: "~£17/agent/mo (Standard)" },
+  { feature: "EU/UK data hosting", freshservice: "Yes", jira: "Yes (EU region available)" },
+  { feature: "GDPR / DPA", freshservice: "Yes", jira: "Yes" },
+  { feature: "ITIL alignment", freshservice: "Yes — incident, problem, change, release", jira: "Yes — strong change management" },
+  { feature: "Asset management (CMDB)", freshservice: "Included from Starter", jira: "Insight CMDB on paid plans" },
+  { feature: "Change management", freshservice: "Strong — dedicated CAB workflow", jira: "Best-in-class — native Jira integration" },
+  { feature: "Automation", freshservice: "Excellent visual rule builder", jira: "Very powerful — Automation for Jira" },
+  { feature: "SLA management", freshservice: "Full SLA policies on all plans", jira: "Available from Standard" },
+  { feature: "Self-service portal", freshservice: "Clean, configurable portal", jira: "Highly configurable" },
+  { feature: "Reporting", freshservice: "Strong on all plans", jira: "Strong — Confluence integration helps" },
+  { feature: "AI features", freshservice: "Freddy AI (higher plans)", jira: "Atlassian Intelligence (Cloud)" },
+  { feature: "Dev team integration", freshservice: "Via connectors (Jira, GitHub)", jira: "Native — same Atlassian platform" },
+  { feature: "Ease of setup", freshservice: "Easier — guided onboarding", jira: "Steeper — needs Atlassian experience" },
+  { feature: "Mobile app", freshservice: "Good", jira: "Good" },
+  { feature: "Affiliate programme", freshservice: "Yes (PartnerStack)", jira: "No public programme" },
+];
+---
+
+<Layout
+  title="Freshservice vs Jira Service Management for UK IT Teams (2026)"
+  description="Head-to-head comparison of Freshservice and Jira Service Management for UK IT teams. Covers ITSM features, ITIL alignment, pricing in GBP, asset management, and a clear verdict on which to choose."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 flex-wrap">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li><a href="/best-help-desk-software-uk-small-business" class="hover:text-blue-700">UK Small Business</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">Freshservice vs Jira Service Management</li>
+    </ol>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      Freshservice vs Jira Service Management for UK IT Teams (2026)
+    </h1>
+    <p class="text-sm text-gray-500">Last reviewed: May 2026 · By a UK IT &amp; Facilities Manager</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-sm text-blue-900 space-y-2">
+    <p class="font-semibold text-blue-800">Quick verdict</p>
+    <p>
+      <strong>Freshservice</strong> wins for most UK IT teams — it's easier to configure, has a better interface for non-technical staff, and covers the full ITSM stack (incidents, changes, assets) without needing Atlassian expertise. <strong>Jira Service Management</strong> wins if your IT team sits alongside a software development team already using Jira and Confluence — the native integration makes it the obvious choice for dev-adjacent IT operations. Both offer EU data hosting and GDPR-ready DPAs.
+    </p>
+  </div>
+
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <!-- Head-to-head table -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Feature comparison</h2>
+    <div class="overflow-x-auto rounded-xl border border-gray-200">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-4 py-3 font-semibold text-gray-700 w-1/3">Feature</th>
+            <th class="text-left px-4 py-3 font-semibold text-green-700">Freshservice</th>
+            <th class="text-left px-4 py-3 font-semibold text-blue-600">Jira Service Management</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {rows.map(({ feature, freshservice, jira }) => (
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 font-medium text-gray-700">{feature}</td>
+              <td class="px-4 py-3 text-gray-700">{freshservice}</td>
+              <td class="px-4 py-3 text-gray-700">{jira}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-gray-400 mt-2">Prices are indicative GBP figures — verify on each vendor's website before purchasing.</p>
+  </section>
+
+  <!-- Detailed breakdown -->
+  <section class="mb-12 space-y-8">
+    <h2 class="text-2xl font-bold text-gray-900">The detailed breakdown</h2>
+
+    <div class="space-y-6 text-sm text-gray-700">
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="border border-green-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-green-800">Freshservice: ease of setup</p>
+          <p>Freshservice is designed to be usable by IT teams without a dedicated Atlassian or ServiceNow specialist. The guided onboarding takes you through service catalogue setup, SLA policies, and agent groups in a logical order. Most UK IT teams can go from sign-up to live within a day for a basic configuration, and a full ITIL-aligned setup within a week. This matters a lot in SME and mid-market IT teams where the IT Manager is also doing the implementation.</p>
+        </div>
+        <div class="border border-blue-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-blue-800">Jira Service Management: ease of setup</p>
+          <p>JSM has a steeper learning curve, particularly if you haven't used Jira Software before. Project configuration, permission schemes, and workflows are powerful but unintuitive for first-timers. If you have an Atlassian admin already familiar with Jira Software, adding JSM is straightforward. If you're starting from scratch, budget an extra week for configuration compared to Freshservice, and consider an Atlassian Solutions Partner for initial setup.</p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="border border-green-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-green-800">Freshservice: ITSM features</p>
+          <p>Covers all five core ITIL disciplines well: incident, problem, change, release, and service catalogue. Asset management is included from the Starter plan — hardware and software assets, linked to tickets. The change management module has a dedicated CAB (Change Advisory Board) workflow out of the box, which most UK IT teams need for change governance. Freshworks' AI assistant (Freddy) adds auto-triage and suggested solutions on higher plans.</p>
+        </div>
+        <div class="border border-blue-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-blue-800">Jira Service Management: ITSM features</p>
+          <p>JSM's change management is the strongest in this comparison — native integration with Jira Software means development changes and IT changes can be tracked in the same tool, with deployment automation from CI/CD pipelines feeding change records. The Insight CMDB on paid plans is powerful for organisations with complex infrastructure. For dev-adjacent IT teams, this native Jira integration removes the need to manually link IT tickets to software issues.</p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="border border-green-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-green-800">Freshservice: pricing</p>
+          <p>No free tier — Starter at approximately £15/agent/month is the entry point. This is a material consideration for smaller IT teams. The Starter plan covers incidents, SLAs, asset management, and basic automation — everything most teams need to operate. Growth adds problem and change management. Pricing is per agent, which is predictable and easy to budget for SME IT teams.</p>
+        </div>
+        <div class="border border-blue-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-blue-800">Jira Service Management: pricing</p>
+          <p>Free tier for up to 3 agents is a genuine advantage for very small IT teams or proof-of-concept deployments. Standard at approximately £17/agent/month is fractionally more expensive than Freshservice Starter. The price difference is small enough that it shouldn't be the deciding factor — choose on fit, not price. JSM's licensing model counts agents separately from Jira Software users, which can get complex for organisations using both.</p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="border border-green-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-green-800">Freshservice: integrations</p>
+          <p>Strong marketplace covering the tools common in UK IT environments: Microsoft 365, Azure AD, Slack, Teams, AWS, Okta, and most endpoint management tools. The Freshworks ecosystem means it pairs naturally with Freshdesk if you also need a customer-facing helpdesk alongside your internal ITSM. API is well-documented for custom integrations.</p>
+        </div>
+        <div class="border border-blue-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-blue-800">Jira Service Management: integrations</p>
+          <p>The key differentiator is native Atlassian integration: Jira Software, Confluence, Bitbucket, and now Atlassian Intelligence across the suite. For organisations already on the Atlassian platform, this is a genuine multiplier — incidents link directly to code commits, Confluence becomes the knowledge base, and change requests can be linked to feature releases. Forge and Connect app frameworks mean the marketplace is extensive for non-Atlassian integrations too.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who should pick which -->
+  <section class="mb-12 space-y-4">
+    <h2 class="text-2xl font-bold text-gray-900">Which one should you choose?</h2>
+    <div class="grid sm:grid-cols-2 gap-5 text-sm">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-5 space-y-3">
+        <p class="font-semibold text-green-800 text-base">Choose Freshservice if:</p>
+        <ul class="space-y-1.5 text-gray-700">
+          {[
+            "Your IT team isn't already using Jira Software",
+            "You want a polished, easy-to-configure ITSM tool",
+            "You also need a customer-facing helpdesk (pair with Freshdesk)",
+            "You have non-technical stakeholders who will use the portal",
+            "You need asset management included from day one",
+            "You want responsive vendor support (Freshworks' own support is good)",
+          ].map(item => (
+            <li class="flex items-start gap-2"><span class="text-green-500 shrink-0">✓</span> {item}</li>
+          ))}
+        </ul>
+        <a href={software.find(s => s.id === "freshservice")!.affiliate.url} target="_blank" rel="sponsored nofollow noreferrer"
+          class="flex items-center justify-center gap-1 bg-green-600 text-white text-sm font-semibold rounded-xl px-4 py-2.5 hover:bg-green-700 transition-colors mt-2">
+          Try Freshservice free →
+        </a>
+      </div>
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 space-y-3">
+        <p class="font-semibold text-blue-800 text-base">Choose Jira Service Management if:</p>
+        <ul class="space-y-1.5 text-gray-700">
+          {[
+            "Your IT team works alongside a development team using Jira",
+            "You use Confluence as your knowledge base",
+            "Change management linked to software deployments is a priority",
+            "You need a free tier for a small IT team (up to 3 agents)",
+            "Your organisation is already invested in the Atlassian platform",
+            "You have an Atlassian admin available for initial configuration",
+          ].map(item => (
+            <li class="flex items-start gap-2"><span class="text-blue-500 shrink-0">✓</span> {item}</li>
+          ))}
+        </ul>
+        <a href={software.find(s => s.id === "jira-service-management")!.affiliate.url} target="_blank" rel="nofollow noreferrer"
+          class="flex items-center justify-center gap-1 bg-blue-600 text-white text-sm font-semibold rounded-xl px-4 py-2.5 hover:bg-blue-700 transition-colors mt-2">
+          Try Jira Service Management free →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+    <div class="flex-1">
+      <p class="font-semibold text-gray-900 mb-1">Compare annual IT costs for your team size</p>
+      <p class="text-sm text-gray-600">See Freshservice vs Jira Service Management side-by-side in GBP for your exact agent count.</p>
+    </div>
+    <a href="/it-help-desk-cost-calculator" class="shrink-0 bg-blue-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">Open Calculator →</a>
+  </div>
+
+  <section class="space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">Is Freshservice or Jira Service Management better for UK IT teams?</dt>
+        <dd class="mt-1">Freshservice is the better default for UK IT teams not already embedded in the Atlassian ecosystem — it's easier to configure, has better vendor support, and covers asset management and ITSM out of the box. Jira Service Management is the better choice if you have a development team on Jira Software, as the native integration is a significant operational advantage for change management and incident response.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Does Freshservice or Jira Service Management handle change management better?</dt>
+        <dd class="mt-1">Jira Service Management has the edge on change management for dev-adjacent IT teams because change requests can be linked directly to Jira Software issues and CI/CD deployments. Freshservice has a dedicated CAB workflow and change calendar that's more accessible for traditional IT change processes. For a classic IT team managing infrastructure changes, Freshservice is more practical. For a DevOps-aligned team, JSM wins.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Can you use Jira Service Management without Jira Software?</dt>
+        <dd class="mt-1">Yes — Jira Service Management is a standalone product and doesn't require a Jira Software subscription. You lose the native dev-IT integration that makes JSM compelling, but the ITSM functionality works independently. For teams not on Jira Software, the case for JSM over Freshservice is weaker — Freshservice is generally easier to set up and manage in that context.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="mt-12 border-t border-gray-200 pt-8">
+    <p class="text-sm font-semibold text-gray-900 mb-3">Related comparisons</p>
+    <div class="flex flex-wrap gap-3 text-sm">
+      <a href="/freshdesk-vs-zoho-desk-uk" class="text-blue-700 hover:underline">Freshdesk vs Zoho Desk →</a>
+      <a href="/best-zendesk-alternatives-uk" class="text-blue-700 hover:underline">Best Zendesk alternatives for UK SMEs →</a>
+      <a href="/best-it-helpdesk-itsm-uk-smes" class="text-blue-700 hover:underline">Best internal IT helpdesk for UK SMEs →</a>
+      <a href="/it-help-desk-cost-calculator" class="text-blue-700 hover:underline">Cost Calculator →</a>
+    </div>
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is Freshservice or Jira Service Management better for UK IT teams?", "acceptedAnswer": { "@type": "Answer", "text": "Freshservice is the better default for teams not already in the Atlassian ecosystem — easier to configure with better vendor support. Jira Service Management wins if your team already uses Jira Software, due to native dev-IT integration." } },
+      { "@type": "Question", "name": "Can you use Jira Service Management without Jira Software?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, JSM is standalone. But without Jira Software, the native dev integration that makes it compelling is absent, making Freshservice generally the easier and more practical choice." } }
+    ]
+  })} />
+</Layout>

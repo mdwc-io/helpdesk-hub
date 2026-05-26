@@ -1,0 +1,227 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import ComparisonTable from "../components/ComparisonTable.tsx";
+import { software } from "../data/software";
+
+const tableProducts = software.filter((s) =>
+  ["freshdesk", "zoho-desk"].includes(s.id)
+);
+
+const rows = [
+  { feature: "Free tier", freshdesk: "Yes — unlimited agents, feature-limited", zoho: "Yes — up to 3 agents" },
+  { feature: "Entry paid plan", freshdesk: "~£12/agent/mo (Growth)", zoho: "~£7/agent/mo (Express)" },
+  { feature: "EU/UK data hosting", freshdesk: "Yes (paid plans)", zoho: "Yes (paid plans)" },
+  { feature: "GDPR / DPA", freshdesk: "Yes", zoho: "Yes" },
+  { feature: "Multi-channel inbox", freshdesk: "Email, chat, phone, social", zoho: "Email, chat, phone, social" },
+  { feature: "SLA management", freshdesk: "From Growth plan", zoho: "From Standard plan" },
+  { feature: "Automation", freshdesk: "Strong — visual rule builder", zoho: "Good — slightly less flexible" },
+  { feature: "Knowledge base", freshdesk: "Included on all plans", zoho: "Included on all plans" },
+  { feature: "AI features", freshdesk: "Freddy AI (higher plans)", zoho: "Zia AI (higher plans)" },
+  { feature: "Reporting", freshdesk: "Good from Growth upwards", zoho: "Strong on Standard+" },
+  { feature: "Zoho suite integration", freshdesk: "Via third-party connector", zoho: "Native — CRM, Books, etc." },
+  { feature: "UI quality", freshdesk: "Polished, modern", zoho: "Functional, slightly dated" },
+  { feature: "Mobile app", freshdesk: "Good", zoho: "Good" },
+  { feature: "Support quality", freshdesk: "Responsive on paid plans", zoho: "Slower — known weak point" },
+];
+---
+
+<Layout
+  title="Freshdesk vs Zoho Desk for UK Small Business (2026)"
+  description="Head-to-head comparison of Freshdesk and Zoho Desk for UK small businesses. Covers pricing in GBP, free tiers, features, GDPR compliance, and a clear verdict on which to choose."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 flex-wrap">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li><a href="/best-help-desk-software-uk-small-business" class="hover:text-blue-700">UK Small Business</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">Freshdesk vs Zoho Desk</li>
+    </ol>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      Freshdesk vs Zoho Desk for UK Small Business (2026)
+    </h1>
+    <p class="text-sm text-gray-500">Last reviewed: May 2026 · By a UK IT &amp; Facilities Manager</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-sm text-blue-900 space-y-2">
+    <p class="font-semibold text-blue-800">Quick verdict</p>
+    <p>
+      <strong>Freshdesk</strong> wins on ease of use, polish, and support quality — it's the safer choice for most UK small businesses starting out. <strong>Zoho Desk</strong> wins on price and Zoho suite integration — it's the better choice if you're already using Zoho CRM or Books, or if cost-per-agent is your primary constraint. Both offer EU data hosting and GDPR-ready DPAs on paid plans.
+    </p>
+  </div>
+
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <!-- Head-to-head table -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Feature comparison</h2>
+    <div class="overflow-x-auto rounded-xl border border-gray-200">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-4 py-3 font-semibold text-gray-700 w-1/3">Feature</th>
+            <th class="text-left px-4 py-3 font-semibold text-blue-700">Freshdesk</th>
+            <th class="text-left px-4 py-3 font-semibold text-orange-600">Zoho Desk</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {rows.map(({ feature, freshdesk, zoho }) => (
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 font-medium text-gray-700">{feature}</td>
+              <td class="px-4 py-3 text-gray-700">{freshdesk}</td>
+              <td class="px-4 py-3 text-gray-700">{zoho}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-gray-400 mt-2">Prices are indicative GBP figures — verify on each vendor's website before purchasing.</p>
+  </section>
+
+  <!-- Detailed breakdown -->
+  <section class="mb-12 space-y-8">
+    <h2 class="text-2xl font-bold text-gray-900">The detailed breakdown</h2>
+
+    <div class="space-y-6 text-sm text-gray-700">
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="border border-blue-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-blue-800">Freshdesk: pricing</p>
+          <p>Free plan is generous — unlimited agents, email and social ticketing, basic automation. The jump to Growth (~£12/agent/mo) adds SLAs, time tracking, and better automation. The free tier is genuinely usable for small teams, which makes Freshdesk the lower-risk starting point: you're not paying anything until you're confident it works for you.</p>
+        </div>
+        <div class="border border-orange-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-orange-700">Zoho Desk: pricing</p>
+          <p>Free for up to 3 agents. Express (~£7/agent/mo) is the cheapest credible paid entry in this comparison — roughly half Freshdesk's Growth plan price. For a team that's already paying for Zoho CRM or Books, adding Zoho Desk at £7/agent is an obvious decision. For teams not in the Zoho ecosystem, the price advantage is real but narrower once you factor in setup time.</p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="border border-blue-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-blue-800">Freshdesk: ease of use</p>
+          <p>Consistently rated among the easiest help desks to set up and use. New agents can be productive within an hour. The interface is clean, modern, and close enough to Gmail that non-technical staff don't need training. Ticket submission by email feels natural to end users — they email your support address, get a reference number, and can reply to update the ticket.</p>
+        </div>
+        <div class="border border-orange-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-orange-700">Zoho Desk: ease of use</p>
+          <p>Functional but less polished. The interface has improved in recent versions but still feels more complex than Freshdesk for first-time users. If your team is already comfortable with Zoho products, the learning curve is minimal. If they're not, budget an extra hour or two of setup and staff orientation compared to Freshdesk.</p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="border border-blue-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-blue-800">Freshdesk: integrations</p>
+          <p>1,000+ marketplace apps including Shopify, Slack, Salesforce, HubSpot, and most major CRMs. The Freshworks ecosystem means it pairs naturally with Freshservice (if you need ITSM) and Freshsales (if you need CRM). API is well-documented and widely used.</p>
+        </div>
+        <div class="border border-orange-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-orange-700">Zoho Desk: integrations</p>
+          <p>Native integration with the full Zoho suite is the key differentiator. If you use Zoho CRM, every support ticket is linked to the customer's CRM record automatically. Zoho Books integration means you can see a client's invoices while handling their query. Third-party integrations are solid but the marketplace is smaller than Freshdesk's.</p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="border border-blue-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-blue-800">Freshdesk: support quality</p>
+          <p>Freshworks' own support is responsive — typically same-day on paid plans, active community forum, and an extensive knowledge base. Email, chat, and phone support available depending on your plan. This matters more than it sounds: when something isn't working and you need a human, the quality gap between vendors is real.</p>
+        </div>
+        <div class="border border-orange-200 rounded-xl p-4 space-y-2">
+          <p class="font-semibold text-orange-700">Zoho Desk: support quality</p>
+          <p>Zoho's own support is the most commonly cited weakness in user reviews. Response times can be slow, and escalating complex issues takes patience. This is less of a problem if you're technically confident and self-sufficient, but it's a genuine risk for smaller businesses that rely on vendor support to resolve issues quickly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who should pick which -->
+  <section class="mb-12 space-y-4">
+    <h2 class="text-2xl font-bold text-gray-900">Which one should you choose?</h2>
+    <div class="grid sm:grid-cols-2 gap-5 text-sm">
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 space-y-3">
+        <p class="font-semibold text-blue-800 text-base">Choose Freshdesk if:</p>
+        <ul class="space-y-1.5 text-gray-700">
+          {[
+            "You're setting up a help desk for the first time",
+            "You want the easiest possible staff onboarding",
+            "You need more than 3 agents on a free plan",
+            "You're not already in the Zoho ecosystem",
+            "You want responsive vendor support as a safety net",
+            "You're likely to integrate with non-Zoho tools (Shopify, Salesforce, Slack)",
+          ].map(item => (
+            <li class="flex items-start gap-2"><span class="text-blue-500 shrink-0">✓</span> {item}</li>
+          ))}
+        </ul>
+        <a href={software.find(s => s.id === "freshdesk")!.affiliate.url} target="_blank" rel="sponsored nofollow noreferrer"
+          class="flex items-center justify-center gap-1 bg-blue-600 text-white text-sm font-semibold rounded-xl px-4 py-2.5 hover:bg-blue-700 transition-colors mt-2">
+          Try Freshdesk free →
+        </a>
+      </div>
+      <div class="bg-orange-50 border border-orange-200 rounded-xl p-5 space-y-3">
+        <p class="font-semibold text-orange-700 text-base">Choose Zoho Desk if:</p>
+        <ul class="space-y-1.5 text-gray-700">
+          {[
+            "You already use Zoho CRM, Books, or other Zoho apps",
+            "Cost-per-agent is your primary constraint",
+            "You have 3 or fewer agents and want the free tier",
+            "You're comfortable with a slightly steeper setup process",
+            "You want the cheapest credible paid entry plan in the market",
+            "Your team is already familiar with Zoho's interface",
+          ].map(item => (
+            <li class="flex items-start gap-2"><span class="text-orange-500 shrink-0">✓</span> {item}</li>
+          ))}
+        </ul>
+        <a href={software.find(s => s.id === "zoho-desk")!.affiliate.url} target="_blank" rel="sponsored nofollow noreferrer"
+          class="flex items-center justify-center gap-1 bg-orange-600 text-white text-sm font-semibold rounded-xl px-4 py-2.5 hover:bg-orange-700 transition-colors mt-2">
+          Try Zoho Desk free →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+    <div class="flex-1">
+      <p class="font-semibold text-gray-900 mb-1">Compare annual costs for your team size</p>
+      <p class="text-sm text-gray-600">See Freshdesk vs Zoho Desk side-by-side in GBP for your exact agent count.</p>
+    </div>
+    <a href="/it-help-desk-cost-calculator" class="shrink-0 bg-blue-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">Open Calculator →</a>
+  </div>
+
+  <section class="space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">Is Freshdesk or Zoho Desk better for a UK small business?</dt>
+        <dd class="mt-1">Freshdesk is the better default choice for most UK small businesses — easier to set up, more polished, and better vendor support. Zoho Desk is the better choice if you're already in the Zoho ecosystem or if the lower price per agent is a genuine deciding factor. Both are solid, GDPR-compliant options.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Can you migrate from Zoho Desk to Freshdesk (or vice versa)?</dt>
+        <dd class="mt-1">Yes — both platforms have import tools that accept CSV exports of tickets and contacts. The migration isn't entirely seamless (attachments and custom fields need attention), but it's manageable. Help Desk Migration (a third-party service) automates the process if you have a large ticket history to move. Factor in migration effort if you're choosing between the two for a team that already has historical ticket data.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Is Zoho Desk really cheaper than Freshdesk?</dt>
+        <dd class="mt-1">At the entry paid tier, yes — roughly half the price per agent. The gap narrows at higher tiers and when you add the time cost of a steeper setup. For a 5-agent team on an entry plan, Zoho Desk saves roughly £300/year over Freshdesk Growth. That's real money for a small business, but weigh it against the ease-of-use and support quality differences.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="mt-12 border-t border-gray-200 pt-8">
+    <p class="text-sm font-semibold text-gray-900 mb-3">Related comparisons</p>
+    <div class="flex flex-wrap gap-3 text-sm">
+      <a href="/freshservice-vs-jira-service-management" class="text-blue-700 hover:underline">Freshservice vs Jira Service Management →</a>
+      <a href="/best-zendesk-alternatives-uk" class="text-blue-700 hover:underline">Best Zendesk alternatives for UK SMEs →</a>
+      <a href="/best-free-help-desk-software-uk" class="text-blue-700 hover:underline">Best free help desk software UK →</a>
+      <a href="/it-help-desk-cost-calculator" class="text-blue-700 hover:underline">Cost Calculator →</a>
+    </div>
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is Freshdesk or Zoho Desk better for a UK small business?", "acceptedAnswer": { "@type": "Answer", "text": "Freshdesk is the better default choice — easier to set up, more polished, and better vendor support. Zoho Desk wins if you're already in the Zoho ecosystem or price per agent is the deciding factor." } },
+      { "@type": "Question", "name": "Is Zoho Desk really cheaper than Freshdesk?", "acceptedAnswer": { "@type": "Answer", "text": "At the entry paid tier, yes — roughly half the price per agent. For a 5-agent team, Zoho Desk saves roughly £300/year over Freshdesk Growth." } }
+    ]
+  })} />
+</Layout>

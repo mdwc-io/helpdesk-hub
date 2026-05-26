@@ -1,0 +1,180 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ComparisonTable from "../components/ComparisonTable.tsx";
+import { software } from "../data/software";
+
+const picks = [
+  software.find((s) => s.id === "freshdesk")!,
+  software.find((s) => s.id === "zoho-desk")!,
+  software.find((s) => s.id === "liveagent")!,
+  software.find((s) => s.id === "hubspot-service")!,
+];
+
+const tableProducts = software.filter((s) =>
+  ["freshdesk", "zoho-desk", "liveagent", "hubspot-service", "zendesk"].includes(s.id)
+);
+
+const verdicts: Record<string, string> = {
+  freshdesk:
+    "The strongest like-for-like Zendesk alternative for UK SMEs. Multichannel inbox, solid automation, EU data hosting, and a free tier that Zendesk doesn't offer. If you're leaving Zendesk due to the price increases since 2023, Freshdesk is the natural migration target — similar structure, fraction of the cost, and a CSV import tool that makes the switch manageable.",
+  "zoho-desk":
+    "The best value alternative if cost-per-agent is the primary driver for leaving Zendesk. At roughly half the price of Freshdesk's paid plans (and significantly cheaper than Zendesk), it covers multichannel ticketing, SLA management, and automation adequately. Best suited to teams already using Zoho CRM or willing to trade some UI polish for a lower bill.",
+  liveagent:
+    "A strong budget alternative that bundles ticketing, live chat, and a basic call centre in one product at a price that undercuts Zendesk significantly. Less polished than Freshdesk, but the feature-to-price ratio on the entry tier is hard to beat for small teams wanting all-in-one without the Zendesk price tag.",
+  "hubspot-service":
+    "The right Zendesk alternative for customer-facing teams where CRM context matters. If your support agents benefit from seeing a customer's full purchase and engagement history when handling a ticket, HubSpot's native CRM integration is a significant advantage over Zendesk's third-party connectors. Gets expensive quickly without the wider HubSpot platform.",
+};
+---
+
+<Layout
+  title="Best Zendesk Alternatives for UK SMEs (2026)"
+  description="Independent comparison of the best Zendesk alternatives for UK small and medium businesses. Covers Freshdesk, Zoho Desk, LiveAgent, and HubSpot — with honest GBP pricing and a clear migration guide."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 flex-wrap">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li><a href="/best-help-desk-software-uk-small-business" class="hover:text-blue-700">UK Small Business</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">Best Zendesk Alternatives UK</li>
+    </ol>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      Best Zendesk Alternatives for UK SMEs (2026)
+    </h1>
+    <p class="text-sm text-gray-500">Last reviewed: May 2026 · By a UK IT &amp; Facilities Manager</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-sm text-blue-900 space-y-2">
+    <p class="font-semibold text-blue-800">Why UK SMEs are leaving Zendesk</p>
+    <p>
+      Zendesk raised prices significantly between 2023 and 2025 and removed several features from lower-tier plans. For UK SMEs, the entry price of approximately £19/agent/month (Suite Team) with limited features at that tier makes it hard to justify against alternatives that offer comparable functionality for significantly less. <strong>Freshdesk</strong> is the strongest like-for-like replacement. <strong>Zoho Desk</strong> is the cheapest credible option. <strong>LiveAgent</strong> bundles ticketing, live chat, and a call centre at a price Zendesk can't match. <strong>HubSpot Service Hub</strong> wins if CRM integration is the priority.
+    </p>
+  </div>
+
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Best Zendesk alternatives for UK small businesses</h2>
+    <div class="grid sm:grid-cols-2 gap-5">
+      {picks.map((product, i) => (
+        <ProductCard product={product} verdict={verdicts[product.id]} rank={i + 1} />
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">How these alternatives compare to Zendesk</h2>
+    <ComparisonTable client:visible products={tableProducts} />
+  </section>
+
+  <!-- Why Zendesk may not be right for UK SMEs -->
+  <section class="mb-12 space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Why UK SMEs are reconsidering Zendesk</h2>
+    <div class="space-y-5 text-sm text-gray-700">
+      <div class="border-l-4 border-amber-300 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Pricing has increased substantially</p>
+        <p>Zendesk's Suite Team plan — the cheapest option that includes live chat, email, and basic automation — now costs approximately £19/agent/month. That's comparable to Freshdesk's Growth plan but without a free tier, and more expensive than Zoho Desk Express by roughly 2.5×. For a 10-agent UK SME, the annual spend difference between Zendesk Suite Team and Freshdesk Growth is substantial. Many UK businesses moved to Zendesk when it was the cost-effective mid-market choice; after the 2023–2024 price increases, that's no longer the case.</p>
+      </div>
+      <div class="border-l-4 border-amber-300 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Feature gating has become more aggressive</p>
+        <p>Zendesk's suite structure means several features that used to be available on lower-tier plans — custom reports, advanced automation, some AI features — have been moved to higher, more expensive tiers. UK SMEs that budgeted for Zendesk based on earlier pricing often find their plan no longer includes the features they rely on, with an upgrade path that doubles or triples their monthly bill.</p>
+      </div>
+      <div class="border-l-4 border-amber-300 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Alternatives have caught up on features</p>
+        <p>In 2018, Zendesk's lead on multichannel ticketing, automation, and integrations was significant. By 2026, Freshdesk, Zoho Desk, and LiveAgent have closed that gap substantially. For the vast majority of UK SME support use cases — email ticketing, live chat, basic automation, SLA management, a knowledge base — the alternatives cover the requirement at a lower price. The cases where Zendesk's feature depth genuinely matters are enterprise-scale scenarios most UK SMEs don't encounter.</p>
+      </div>
+      <div class="border-l-4 border-amber-300 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Migrating away from Zendesk is manageable</p>
+        <p>The main obstacle to switching is historical ticket data and institutional knowledge about configuration. Zendesk exports tickets and contacts in standard CSV format. Freshdesk has a dedicated Zendesk migration tool. Help Desk Migration (a third-party service) automates the process for larger ticket histories, including attachments and custom fields. Most UK SMEs with under 50,000 tickets find the migration can be completed over a weekend with appropriate planning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zendesk vs Freshdesk direct -->
+  <section class="mb-12 space-y-4">
+    <h2 class="text-2xl font-bold text-gray-900">Zendesk vs Freshdesk: the direct comparison</h2>
+    <div class="overflow-x-auto rounded-xl border border-gray-200">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-4 py-3 font-semibold text-gray-700 w-1/3">Factor</th>
+            <th class="text-left px-4 py-3 font-semibold text-gray-600">Zendesk</th>
+            <th class="text-left px-4 py-3 font-semibold text-blue-700">Freshdesk</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-gray-700">
+          {[
+            { factor: "Entry price", zendesk: "~£19/agent/mo (no free tier)", freshdesk: "Free tier + ~£12/agent/mo (Growth)" },
+            { factor: "Free tier", zendesk: "No", freshdesk: "Yes — unlimited agents, basic features" },
+            { factor: "EU data hosting", zendesk: "Yes", freshdesk: "Yes" },
+            { factor: "Automation", zendesk: "Very strong", freshdesk: "Strong — comparable at Growth level" },
+            { factor: "Integrations", zendesk: "1,500+ apps", freshdesk: "1,000+ apps" },
+            { factor: "AI features", zendesk: "Advanced (expensive plans)", freshdesk: "Freddy AI (Growth+)" },
+            { factor: "Reporting", zendesk: "Best-in-class", freshdesk: "Good from Growth upwards" },
+            { factor: "Migration tool", zendesk: "—", freshdesk: "Dedicated Zendesk importer" },
+            { factor: "Support quality", zendesk: "Good on paid plans", freshdesk: "Good on paid plans" },
+          ].map(({ factor, zendesk, freshdesk }) => (
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 font-medium">{factor}</td>
+              <td class="px-4 py-3">{zendesk}</td>
+              <td class="px-4 py-3">{freshdesk}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-gray-400 mt-2">Prices are indicative GBP figures — verify on each vendor's website before purchasing.</p>
+  </section>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+    <div class="flex-1">
+      <p class="font-semibold text-gray-900 mb-1">Calculate what you'd save switching from Zendesk</p>
+      <p class="text-sm text-gray-600">Compare Freshdesk, Zoho Desk, and LiveAgent against Zendesk in GBP for your exact agent count.</p>
+    </div>
+    <a href="/it-help-desk-cost-calculator" class="shrink-0 bg-blue-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">Open Calculator →</a>
+  </div>
+
+  <section class="space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">What is the best Zendesk alternative for UK small businesses?</dt>
+        <dd class="mt-1">Freshdesk is the strongest like-for-like Zendesk alternative for UK SMEs — similar multichannel ticketing structure, significantly lower cost, a free tier Zendesk doesn't offer, and a dedicated migration tool. For teams prioritising cost above all else, Zoho Desk is cheaper. For teams wanting ticketing and live chat in one tool at a budget price, LiveAgent is worth trialling.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">How do you migrate from Zendesk to Freshdesk?</dt>
+        <dd class="mt-1">Freshdesk has a built-in Zendesk importer that handles tickets, contacts, and agents via API connection. You'll need your Zendesk subdomain and an API token. The migration preserves ticket history, statuses, and basic custom fields. Attachments and complex custom fields need manual attention. For larger migrations (50,000+ tickets), Help Desk Migration (helpdeskmigration.com) automates the full process including attachments for a one-off fee.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Is Freshdesk as good as Zendesk for UK businesses?</dt>
+        <dd class="mt-1">For most UK SME use cases, yes. Zendesk's genuine advantages — deeper analytics, more advanced AI, larger app marketplace — matter at enterprise scale. For teams handling under a few hundred tickets a day, Freshdesk covers the use case at a fraction of the cost. The main trade-off is reporting depth: Zendesk's Explore analytics platform is notably stronger than Freshdesk's equivalent, which matters if reporting to senior management is a regular requirement.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="mt-12 border-t border-gray-200 pt-8">
+    <p class="text-sm font-semibold text-gray-900 mb-3">Related comparisons</p>
+    <div class="flex flex-wrap gap-3 text-sm">
+      <a href="/freshdesk-vs-zoho-desk-uk" class="text-blue-700 hover:underline">Freshdesk vs Zoho Desk →</a>
+      <a href="/best-free-help-desk-software-uk" class="text-blue-700 hover:underline">Best free help desk software UK →</a>
+      <a href="/best-help-desk-software-uk-small-business" class="text-blue-700 hover:underline">Best for UK Small Business →</a>
+      <a href="/it-help-desk-cost-calculator" class="text-blue-700 hover:underline">Cost Calculator →</a>
+    </div>
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is the best Zendesk alternative for UK small businesses?", "acceptedAnswer": { "@type": "Answer", "text": "Freshdesk is the strongest like-for-like Zendesk alternative — similar multichannel ticketing, significantly lower cost, a free tier Zendesk doesn't offer, and a dedicated migration tool." } },
+      { "@type": "Question", "name": "How do you migrate from Zendesk to Freshdesk?", "acceptedAnswer": { "@type": "Answer", "text": "Freshdesk has a built-in Zendesk importer using API connection. For larger migrations, Help Desk Migration automates the full process including attachments." } }
+    ]
+  })} />
+</Layout>

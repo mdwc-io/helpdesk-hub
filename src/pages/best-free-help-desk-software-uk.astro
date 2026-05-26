@@ -1,0 +1,186 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { software } from "../data/software";
+
+const picks = [
+  software.find((s) => s.id === "freshdesk")!,
+  software.find((s) => s.id === "zoho-desk")!,
+  software.find((s) => s.id === "hubspot-service")!,
+  software.find((s) => s.id === "tidio")!,
+  software.find((s) => s.id === "jira-service-management")!,
+  software.find((s) => s.id === "liveagent")!,
+];
+
+const verdicts: Record<string, string> = {
+  freshdesk:
+    "The best free helpdesk for UK small businesses. Unlimited agents on the free tier, email-to-ticket, basic automation, and a knowledge base — all at no cost. EU data hosting and GDPR compliance available on paid upgrades. The free plan is genuinely usable for small teams handling under ~200 tickets/month; it's not crippled to force an upgrade.",
+  "zoho-desk":
+    "Free for up to 3 agents — the most restrictive agent limit in this comparison, but if you have a small team (sole trader, 2-person support team), the Zoho Desk free tier covers email ticketing, basic automation, and a knowledge base adequately. The natural upgrade path to Express (~£7/agent/mo) is the cheapest paid entry in this category.",
+  "hubspot-service":
+    "Free tier includes ticketing, a shared inbox, live chat, and CRM integration — the only tool on this list that includes CRM data on the free plan. The catch: reporting and automation are limited until you pay. Best suited to customer-facing teams that also use HubSpot CRM for their sales pipeline.",
+  tidio:
+    "Free live chat tier for small websites — up to 50 conversations/month and 3 chat operators on the free plan. Not a ticketing system, but for businesses whose primary support channel is website chat rather than email, Tidio's free tier is a strong starting point. One-click Shopify integration makes it particularly useful for e-commerce.",
+  "jira-service-management":
+    "Free for up to 3 agents with surprisingly capable ITSM features — incident management, a service catalogue, and basic change management are all included. Best suited to small IT teams within organisations already using Jira Software. The free tier is more powerful than Freshdesk's for internal IT use cases, but more complex to set up.",
+  liveagent:
+    "Free tier includes email ticketing and one live chat button — functional but limited compared to Freshdesk's free offering. Worth considering if you specifically need a combined ticketing and live chat tool and Tidio's free tier doesn't cover email. The paid entry tier is competitively priced.",
+};
+
+const freeFeatures = [
+  { tool: "Freshdesk", agents: "Unlimited", email: "✓", livechat: "✓ (limited)", phone: "✗", automation: "Basic", kb: "✓", sla: "✗", euHosting: "Paid only" },
+  { tool: "Zoho Desk", agents: "Up to 3", email: "✓", livechat: "✗", phone: "✗", automation: "Basic", kb: "✓", sla: "✗", euHosting: "Paid only" },
+  { tool: "HubSpot Free", agents: "Unlimited", email: "✓", livechat: "✓", phone: "✗", automation: "Very basic", kb: "✗", sla: "✗", euHosting: "✓" },
+  { tool: "Tidio", agents: "3 operators", email: "✗", livechat: "✓", phone: "✗", automation: "Basic", kb: "✗", sla: "✗", euHosting: "✗" },
+  { tool: "Jira SM", agents: "Up to 3", email: "✓", livechat: "✗", phone: "✗", automation: "Limited", kb: "Via Confluence", sla: "Basic", euHosting: "✓" },
+  { tool: "LiveAgent", agents: "1 agent", email: "✓", livechat: "✓ (1 button)", phone: "✗", automation: "Very basic", kb: "✓", sla: "✗", euHosting: "✗" },
+];
+---
+
+<Layout
+  title="Best Free Help Desk Software for UK Businesses (2026)"
+  description="Independent comparison of the best free help desk software for UK businesses. Covers Freshdesk, Zoho Desk, HubSpot, Tidio, and Jira Service Management free tiers — with honest feature limits and GDPR notes."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 flex-wrap">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li><a href="/best-help-desk-software-uk-small-business" class="hover:text-blue-700">UK Small Business</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">Best Free Help Desk Software UK</li>
+    </ol>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      Best Free Help Desk Software for UK Businesses (2026)
+    </h1>
+    <p class="text-sm text-gray-500">Last reviewed: May 2026 · By a UK IT &amp; Facilities Manager</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-sm text-blue-900 space-y-2">
+    <p class="font-semibold text-blue-800">Quick verdict</p>
+    <p>
+      <strong>Freshdesk</strong> has the most generous free tier for UK businesses — unlimited agents, email ticketing, basic automation, and a knowledge base at no cost. <strong>HubSpot Service Hub</strong> is the free pick if you need CRM integration from day one. <strong>Jira Service Management</strong> is the best free option for small internal IT teams (up to 3 agents). <strong>Tidio</strong> is the best free live chat for website visitors. <strong>Zoho Desk</strong> is free for up to 3 agents with a very affordable upgrade path. All free tiers have real limitations — this guide is honest about what they are.
+    </p>
+  </div>
+
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <!-- Free tier feature matrix -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">What each free tier includes</h2>
+    <div class="overflow-x-auto rounded-xl border border-gray-200">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-4 py-3 font-semibold text-gray-700">Tool</th>
+            <th class="text-left px-4 py-3 font-semibold text-gray-700">Free agents</th>
+            <th class="text-left px-4 py-3 font-semibold text-gray-700">Email tickets</th>
+            <th class="text-left px-4 py-3 font-semibold text-gray-700">Live chat</th>
+            <th class="text-left px-4 py-3 font-semibold text-gray-700">Automation</th>
+            <th class="text-left px-4 py-3 font-semibold text-gray-700">Knowledge base</th>
+            <th class="text-left px-4 py-3 font-semibold text-gray-700">SLA</th>
+            <th class="text-left px-4 py-3 font-semibold text-gray-700">EU hosting</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {freeFeatures.map(({ tool, agents, email, livechat, automation, kb, sla, euHosting }) => (
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 font-medium text-gray-900">{tool}</td>
+              <td class="px-4 py-3 text-gray-700">{agents}</td>
+              <td class="px-4 py-3 text-gray-700">{email}</td>
+              <td class="px-4 py-3 text-gray-700">{livechat}</td>
+              <td class="px-4 py-3 text-gray-700">{automation}</td>
+              <td class="px-4 py-3 text-gray-700">{kb}</td>
+              <td class="px-4 py-3 text-gray-700">{sla}</td>
+              <td class="px-4 py-3 text-gray-700">{euHosting}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-gray-400 mt-2">Free tier features change — verify current limits on each vendor's pricing page before committing.</p>
+  </section>
+
+  <!-- Product cards -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Best free help desk tools for UK businesses</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {picks.map((product, i) => (
+        <ProductCard product={product} verdict={verdicts[product.id]} rank={i + 1} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Honest free tier guidance -->
+  <section class="mb-12 space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">What "free" actually means — and where the limits bite</h2>
+    <div class="space-y-5 text-sm text-gray-700">
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Free tiers are not crippled — but they're not complete</p>
+        <p>The free tiers from Freshdesk, Zoho Desk, and HubSpot are genuinely usable for small businesses, not just marketing-grade demos. You can handle real support volume, build a knowledge base, and automate common workflows on the free plan. The limits that matter most are: no SLA enforcement (free Freshdesk), restricted agent count (Zoho Desk: 3 agents), and EU data hosting typically requiring a paid upgrade. If you need SLA tracking, compliance-grade data hosting, or more than basic automation, the upgrade is necessary — but you can validate the tool on free first.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">GDPR and UK data protection on free plans</p>
+        <p>Most vendors don't offer Data Processing Agreements (DPAs) or EU data hosting on free plans. This matters if you're processing personal data — which virtually all UK businesses with a customer support function are. Freshdesk and Zoho Desk offer DPAs and EU hosting on paid plans only. HubSpot is an exception: EU data hosting is available on free plans, and a DPA can be signed at any tier. For UK businesses processing significant customer personal data, this is a material reason to upgrade or choose HubSpot specifically.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">When to upgrade from free</p>
+        <p>The trigger points that usually indicate it's time to pay: (1) You need SLA policies — automated escalation when tickets breach response time targets. (2) You have more than 3 agents and are on Zoho Desk free. (3) You need EU data hosting and a DPA for GDPR compliance. (4) Your reporting needs go beyond basic ticket counts. (5) You need time tracking for billing or internal accountability. Most UK SMEs find the free tier workable up to around 5–10 agents and 100–200 tickets/month; beyond that, the missing features start causing operational problems.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Open source alternatives</p>
+        <p>Tools like osTicket and Zammad are free open-source alternatives, but they require self-hosting, server management, and technical setup. For UK SMEs without in-house sysadmin capacity, the "free" software comes with real hosting and maintenance costs — typically £20–60/month for a basic VPS and several hours of initial setup. Unless you have the technical resource to maintain them, the cloud-hosted free tiers from Freshdesk or HubSpot are more genuinely free in practice.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+    <div class="flex-1">
+      <p class="font-semibold text-gray-900 mb-1">See what you'd pay when your team grows</p>
+      <p class="text-sm text-gray-600">Compare annual costs across all platforms in GBP — from free tier to 20+ agents.</p>
+    </div>
+    <a href="/it-help-desk-cost-calculator" class="shrink-0 bg-blue-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">Open Calculator →</a>
+  </div>
+
+  <section class="space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">What is the best completely free help desk for a UK small business?</dt>
+        <dd class="mt-1">Freshdesk's free tier is the best all-round option — unlimited agents, email-to-ticket, basic automation, and a knowledge base at no cost. For CRM integration from day one, HubSpot Service Hub free is the better choice. For small internal IT teams (up to 3 agents), Jira Service Management's free tier has stronger ITSM features than Freshdesk's.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Is Freshdesk really free for UK businesses?</dt>
+        <dd class="mt-1">Yes — Freshdesk's free tier has no agent limit, no time limit, and no trial expiry. The genuine limitations are: no SLA management, basic automation only, limited reporting, and EU data hosting only on paid plans. For a UK business not yet subject to strict GDPR compliance audits (e.g. a small team handling general enquiries), the free tier is a legitimate long-term option, not just a trial.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Can I use a free help desk and stay GDPR-compliant?</dt>
+        <dd class="mt-1">With difficulty. Most vendors require a paid plan to sign a Data Processing Agreement (required under UK GDPR if the vendor is processing personal data on your behalf) and to select EU data hosting. HubSpot is the exception — DPA and EU hosting are available at the free tier. If GDPR compliance is a strict requirement, either use HubSpot free or budget for at least the entry paid tier of Freshdesk or Zoho Desk.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="mt-12 border-t border-gray-200 pt-8">
+    <p class="text-sm font-semibold text-gray-900 mb-3">Related guides</p>
+    <div class="flex flex-wrap gap-3 text-sm">
+      <a href="/best-help-desk-software-uk-small-business" class="text-blue-700 hover:underline">Best for UK Small Business →</a>
+      <a href="/best-zendesk-alternatives-uk" class="text-blue-700 hover:underline">Best Zendesk alternatives →</a>
+      <a href="/freshdesk-vs-zoho-desk-uk" class="text-blue-700 hover:underline">Freshdesk vs Zoho Desk →</a>
+      <a href="/it-help-desk-cost-calculator" class="text-blue-700 hover:underline">Cost Calculator →</a>
+    </div>
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is the best completely free help desk for a UK small business?", "acceptedAnswer": { "@type": "Answer", "text": "Freshdesk's free tier is the best all-round option — unlimited agents, email-to-ticket, basic automation, and a knowledge base at no cost. For CRM integration, HubSpot Service Hub free is the better choice." } },
+      { "@type": "Question", "name": "Can I use a free help desk and stay GDPR-compliant?", "acceptedAnswer": { "@type": "Answer", "text": "HubSpot offers a DPA and EU hosting on their free tier. Other vendors require a paid plan for these. If GDPR compliance is a strict requirement, use HubSpot free or budget for an entry paid tier from Freshdesk or Zoho Desk." } }
+    ]
+  })} />
+</Layout>

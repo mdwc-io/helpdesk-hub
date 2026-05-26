@@ -1,0 +1,178 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ComparisonTable from "../components/ComparisonTable.tsx";
+import { software } from "../data/software";
+
+const picks = [
+  software.find((s) => s.id === "tidio")!,
+  software.find((s) => s.id === "freshdesk")!,
+  software.find((s) => s.id === "liveagent")!,
+  software.find((s) => s.id === "hubspot-service")!,
+];
+
+const tableProducts = software.filter((s) =>
+  ["tidio", "freshdesk", "liveagent", "hubspot-service", "zoho-desk"].includes(s.id)
+);
+
+const verdicts: Record<string, string> = {
+  tidio:
+    "The strongest dedicated live chat tool for UK small businesses, particularly e-commerce. Best-in-class AI chatbot, one-click Shopify/WooCommerce integration, and a free tier that handles 50 conversations/month. Not a full ticketing system — pair with Freshdesk if you also need structured email ticket management.",
+  freshdesk:
+    "The best all-in-one option that does both well. Freshdesk includes live chat (via the Freshchat widget) alongside its email ticketing, automation, and knowledge base — all in one multichannel inbox. Slightly less specialist than Tidio for pure live chat, but the integration between chat and email tickets is seamless and the free tier covers both channels.",
+  liveagent:
+    "The best budget option for teams wanting ticketing, live chat, and a basic phone system in one tool at the lowest possible price. Less polished than Freshdesk, but the feature breadth at the entry tier is hard to beat. Strong SLA management on paid plans makes it a viable option for teams with formal response time commitments.",
+  "hubspot-service":
+    "The right choice for sales-led businesses where live chat conversations should be captured against a CRM contact record. A chat conversation that starts as a support query can be converted to a sales opportunity in one click. Best value if you're also using HubSpot CRM or Marketing Hub.",
+};
+---
+
+<Layout
+  title="Best Live Chat & Ticketing Software for UK Small Business (2026)"
+  description="Independent comparison of the best live chat and helpdesk ticketing tools for UK small businesses. Covers Tidio, Freshdesk, LiveAgent, and HubSpot — with honest GBP pricing and a guide to combining tools."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 flex-wrap">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li><a href="/best-help-desk-software-uk-small-business" class="hover:text-blue-700">UK Small Business</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">Best Live Chat & Ticketing Software UK</li>
+    </ol>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      Best Live Chat &amp; Ticketing Software for UK Small Business (2026)
+    </h1>
+    <p class="text-sm text-gray-500">Last reviewed: May 2026 · By a UK IT &amp; Facilities Manager</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-sm text-blue-900 space-y-2">
+    <p class="font-semibold text-blue-800">Quick verdict</p>
+    <p>
+      Live chat and ticketing serve different moments in the support journey: live chat handles real-time conversations from website visitors (pre-purchase questions, urgent queries), while ticketing manages structured requests that need tracking, routing, and SLA management. <strong>Tidio</strong> is the best specialist live chat for UK small businesses and e-commerce. <strong>Freshdesk</strong> is the best all-in-one that does both adequately in a single product. <strong>LiveAgent</strong> is the best budget option combining ticketing, live chat, and a basic call centre. Many UK businesses run Tidio on their website alongside Freshdesk for email — the combination is more powerful than either alone.
+    </p>
+  </div>
+
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Top picks for live chat &amp; ticketing</h2>
+    <div class="grid sm:grid-cols-2 gap-5">
+      {picks.map((product, i) => (
+        <ProductCard product={product} verdict={verdicts[product.id]} rank={i + 1} />
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Full comparison</h2>
+    <ComparisonTable client:visible products={tableProducts} />
+  </section>
+
+  <!-- One tool or two -->
+  <section class="mb-12 space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">One tool or two? How to think about live chat &amp; ticketing</h2>
+    <div class="space-y-5 text-sm text-gray-700">
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Live chat and ticketing solve different problems</p>
+        <p>Live chat is a synchronous channel — the visitor expects a reply within seconds or minutes, or they leave. It's best suited to pre-purchase questions, real-time troubleshooting, and urgent queries where the customer is actively waiting. Ticketing is an asynchronous channel — the customer submits a request, gets a reference number, and expects a response within hours or days. It's suited to complex queries, formal complaints, maintenance requests, and anything that requires internal routing or escalation. Most UK small businesses need both; the question is whether to run them in separate tools or one.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">When one tool is enough</p>
+        <p>If your support volume is under ~50 tickets/day and your live chat is mostly handled by the same people as your email queue, an all-in-one tool like Freshdesk or LiveAgent is the right answer. Both include a live chat widget and email ticketing in the same interface, so agents can switch between channels without swapping tools. The total cost is lower than two separate products, and there's less complexity to manage. Freshdesk's free tier covers both channels at no cost for small teams.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">When specialist tools win</p>
+        <p>At higher volume, or where live chat is a primary sales and engagement channel, specialist tools outperform all-in-ones. Tidio's AI chatbot is significantly more capable than Freshdesk's live chat widget — it can handle order status queries, product questions, and lead capture automatically, reducing the human workload substantially. For Shopify and WooCommerce stores, Tidio's native integrations (showing order details inside the chat window) are features Freshdesk's chat widget doesn't match. The combination of Tidio for live chat and Freshdesk for email ticketing runs to approximately £25–40/month for a small team and covers both channels properly.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">The AI chatbot question</p>
+        <p>All four tools in this comparison include some form of AI chatbot or automated response capability. The quality varies substantially. Tidio's Lyro AI chatbot is the most capable for conversational use cases — it can answer questions from your knowledge base, handle order lookups, and qualify leads without human intervention. Freshdesk's Freddy AI is available on higher plans and handles ticket auto-triage and suggested replies for agents. For UK small businesses looking to reduce after-hours response burden, Tidio's AI chatbot pays for itself quickly by handling common queries without staff time.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">GDPR note on live chat</p>
+        <p>Live chat widgets process personal data (name, email, chat content) in real time. Your privacy policy must disclose the use of live chat software. Ensure your chosen tool offers a DPA and stores chat data in the EU or UK — Tidio is US-based (data stored in the US), which means you should assess whether this is acceptable under your UK GDPR obligations. Freshdesk, HubSpot, and LiveAgent offer EU data hosting on paid plans. If GDPR data residency is a hard requirement, Tidio is not the right choice without additional safeguards.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Decision table -->
+  <section class="mb-12 space-y-4">
+    <h2 class="text-2xl font-bold text-gray-900">Which combination is right for you?</h2>
+    <div class="overflow-x-auto rounded-xl border border-gray-200">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="text-left px-4 py-3 font-semibold text-gray-700">If you are…</th>
+            <th class="text-left px-4 py-3 font-semibold text-gray-700">Recommended setup</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-gray-700">
+          {[
+            { who: "A Shopify/WooCommerce store with under 50 tickets/day", rec: "Tidio (free/paid) + Freshdesk free — Tidio for storefront chat, Freshdesk for email tickets" },
+            { who: "A small business wanting one tool for everything", rec: "Freshdesk (free or Growth) — handles both channels adequately, lower complexity" },
+            { who: "A service business where chat is a lead gen tool", rec: "HubSpot Service Hub free — chat conversations captured against CRM contact records" },
+            { who: "A budget-constrained team needing ticketing, chat, and phone", rec: "LiveAgent Small (~£7/agent/mo) — all three channels in one tool at the lowest price" },
+            { who: "Any team where EU data hosting is a hard requirement", rec: "Freshdesk, HubSpot, or LiveAgent (on paid plans) — avoid Tidio unless you've assessed US data transfer" },
+            { who: "A team handling 200+ tickets/day with real-time chat demand", rec: "Tidio Pro + Freshdesk Growth — specialist tools at scale; total cost stays manageable" },
+          ].map(({ who, rec }) => (
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 font-medium w-2/5">{who}</td>
+              <td class="px-4 py-3">{rec}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+    <div class="flex-1">
+      <p class="font-semibold text-gray-900 mb-1">Calculate the annual cost for your team</p>
+      <p class="text-sm text-gray-600">Compare Tidio, Freshdesk, LiveAgent, and HubSpot in GBP for your exact agent count.</p>
+    </div>
+    <a href="/it-help-desk-cost-calculator" class="shrink-0 bg-blue-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">Open Calculator →</a>
+  </div>
+
+  <section class="space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">What is the best live chat software for a UK small business?</dt>
+        <dd class="mt-1">Tidio is the strongest specialist live chat tool — best AI chatbot in class, easiest setup, and a free tier for small sites. For businesses that want live chat and email ticketing in one product, Freshdesk covers both channels cleanly on its free tier. Tidio is the better choice when live chat is a primary sales or support channel; Freshdesk is better when live chat is secondary to email.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Do I need separate tools for live chat and ticketing?</dt>
+        <dd class="mt-1">Not necessarily. At low volume (under 50 tickets/day), Freshdesk or LiveAgent handles both channels in one tool without meaningful quality loss. At higher volume, or where live chat is a core sales tool, the combination of a specialist live chat tool (Tidio) with a specialist ticketing tool (Freshdesk) performs better and isn't much more expensive at small-team scale.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Is Tidio GDPR-compliant for UK businesses?</dt>
+        <dd class="mt-1">Tidio is US-based and stores chat data on US servers. It complies with GDPR in the sense that it has a DPA and uses Standard Contractual Clauses for international data transfers, but chat data is not stored in the EU or UK. For most UK small businesses, this is acceptable with a proper privacy policy disclosing the transfer. For businesses with strict data residency requirements (healthcare, finance, regulated professions), choose Freshdesk or HubSpot instead — both offer EU data hosting on paid plans.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="mt-12 border-t border-gray-200 pt-8">
+    <p class="text-sm font-semibold text-gray-900 mb-3">Related guides</p>
+    <div class="flex flex-wrap gap-3 text-sm">
+      <a href="/best-help-desk-software-uk-ecommerce-retail" class="text-blue-700 hover:underline">Best for UK E-commerce & Retail →</a>
+      <a href="/best-free-help-desk-software-uk" class="text-blue-700 hover:underline">Best free help desk software UK →</a>
+      <a href="/best-zendesk-alternatives-uk" class="text-blue-700 hover:underline">Best Zendesk alternatives →</a>
+      <a href="/it-help-desk-cost-calculator" class="text-blue-700 hover:underline">Cost Calculator →</a>
+    </div>
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is the best live chat software for a UK small business?", "acceptedAnswer": { "@type": "Answer", "text": "Tidio is the strongest specialist live chat tool with the best AI chatbot and a free tier. For businesses wanting live chat and email ticketing in one product, Freshdesk handles both on its free tier." } },
+      { "@type": "Question", "name": "Is Tidio GDPR-compliant for UK businesses?", "acceptedAnswer": { "@type": "Answer", "text": "Tidio stores data on US servers and uses Standard Contractual Clauses for international transfers. For strict EU/UK data residency requirements, choose Freshdesk or HubSpot with EU hosting on paid plans instead." } }
+    ]
+  })} />
+</Layout>
