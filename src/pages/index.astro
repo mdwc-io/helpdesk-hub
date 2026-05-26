@@ -30,11 +30,15 @@ import Layout from "../layouts/Layout.astro";
   <section class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
     {[
       { href: "/it-help-desk-cost-calculator", label: "Cost Calculator", desc: "Compare annual costs for your team size across 6 platforms.", live: true },
-      { href: "/best-help-desk-software-uk-charities", label: "Best for UK Charities & Non-Profits", desc: "Which platforms offer charity discounts and fit tight budgets?", live: true },
-      { href: "/best-help-desk-software-uk-schools-mats", label: "Best for UK Schools & MATs", desc: "GDPR-compliant options with MIS integration for education.", live: true },
-      { href: "/best-help-desk-software-uk-msps", label: "Best for UK MSPs", desc: "Multi-tenant, white-label, and RMM-integrated picks.", live: true },
-      { href: "/best-it-ticketing-uk-logistics-manufacturing", label: "Best for UK Logistics & Manufacturing", desc: "High-volume, multi-site support — from someone who does this job.", live: true },
-      { href: "#", label: "Best UK ITSM for SMEs", desc: "Full ITIL service management without enterprise pricing.", live: false },
+      { href: "/best-help-desk-software-uk-small-business", label: "Best for UK Small Business", desc: "The hub guide — find the right tool for your sector.", live: true },
+      { href: "/best-help-desk-software-uk-charities", label: "Best for UK Charities & Non-Profits", desc: "Free tiers, TechSoup pricing, and GDPR compliance.", live: true },
+      { href: "/best-help-desk-software-uk-schools-mats", label: "Best for UK Schools & MATs", desc: "ICO compliance, MIS integration, MAT management.", live: true },
+      { href: "/best-help-desk-software-uk-msps", label: "Best for UK MSPs", desc: "Multi-tenancy, SLA management, RMM integration.", live: true },
+      { href: "/best-it-ticketing-uk-logistics-manufacturing", label: "Best for UK Logistics & Manufacturing", desc: "Shift-based ops, asset management, WMS integration.", live: true },
+      { href: "/best-it-helpdesk-itsm-uk-smes", label: "Best Internal IT for UK SMEs", desc: "ITSM, asset tracking, and change management.", live: true },
+      { href: "/best-help-desk-software-uk-ecommerce-retail", label: "Best for UK E-commerce & Retail", desc: "Live chat, Shopify integration, order support.", live: true },
+      { href: "/best-help-desk-software-uk-accountancy-professional-services", label: "Best for Accountancy & Professional Services", desc: "CRM integration, client portals, data protection.", live: true },
+      { href: "/best-help-desk-software-uk-property-lettings", label: "Best for UK Property & Lettings", desc: "Tenant maintenance, deposit disputes, live chat.", live: true },
     ].map(({ href, label, desc, live }) => (
       <a
         href={href}

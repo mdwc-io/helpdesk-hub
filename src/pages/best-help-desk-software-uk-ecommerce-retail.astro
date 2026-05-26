@@ -1,0 +1,143 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ComparisonTable from "../components/ComparisonTable.tsx";
+import { software } from "../data/software";
+
+const picks = [
+  software.find((s) => s.id === "tidio")!,
+  software.find((s) => s.id === "freshdesk")!,
+  software.find((s) => s.id === "liveagent")!,
+];
+
+const tableProducts = software.filter((s) =>
+  ["tidio", "freshdesk", "liveagent", "hubspot-service", "zendesk"].includes(s.id)
+);
+
+const verdicts: Record<string, string> = {
+  tidio:
+    "The best live chat and AI chatbot for UK e-commerce, particularly Shopify and WooCommerce stores. One-click platform integration, a genuinely useful AI bot that handles order status and FAQs automatically, and 30% lifetime recurring commission makes it a standout recommendation. Not a full ticketing system — pair it with Freshdesk if you need structured email ticket management alongside live chat.",
+  freshdesk:
+    "The best all-round helpdesk for UK e-commerce and retail teams that handle support across email, live chat, and social media. Multi-channel inbox consolidates everything in one place; automation handles order-related routing; and the free tier is a genuine starting point for small online retailers. Scales well into peak periods (Black Friday, Christmas) without punishing you on per-agent pricing.",
+  liveagent:
+    "A strong budget alternative for small UK retail businesses that want live chat, email ticketing, and a basic phone system in one tool without Freshdesk's price tag. The interface is less polished, but the feature-to-price ratio is hard to beat at the entry tier. Worth a trial if cost is the primary constraint.",
+};
+---
+
+<Layout
+  title="Best Help Desk Software for UK E-commerce & Retail SMEs (2026)"
+  description="Independent comparison of help desk and live chat software for UK e-commerce and retail businesses. Covers Shopify integration, live chat, order support workflows, and honest GBP pricing."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 flex-wrap">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li><a href="/best-help-desk-software-uk-small-business" class="hover:text-blue-700">UK Small Business</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">E-commerce & Retail</li>
+    </ol>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      Best Help Desk Software for UK E-commerce & Retail SMEs (2026)
+    </h1>
+    <p class="text-sm text-gray-500">Last reviewed: May 2026 · By a UK IT &amp; Facilities Manager</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-sm text-blue-900 space-y-2">
+    <p class="font-semibold text-blue-800">Quick verdict</p>
+    <p>
+      UK e-commerce and retail businesses have two distinct support needs: real-time live chat for pre-purchase queries, and structured ticketing for post-purchase issues (returns, refunds, delivery problems). <strong>Tidio</strong> is the best live chat and AI chatbot for Shopify and WooCommerce stores. <strong>Freshdesk</strong> is the best all-round multichannel helpdesk once ticket volume justifies structured management. Many retailers run both — Tidio on the storefront, Freshdesk for the inbox.
+    </p>
+  </div>
+
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Top picks for UK e-commerce & retail</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {picks.map((product, i) => (
+        <ProductCard product={product} verdict={verdicts[product.id]} rank={i + 1} />
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Full comparison</h2>
+    <ComparisonTable client:visible products={tableProducts} />
+  </section>
+
+  <section class="mb-12 space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">What UK e-commerce businesses need from support software</h2>
+    <div class="space-y-5 text-sm text-gray-700">
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Live chat converts browsers into buyers</p>
+        <p>For UK online retailers, live chat isn't just a support channel — it's a sales tool. Shoppers with a pre-purchase question who can't get an instant answer leave and buy from a competitor. Tidio's research puts live chat conversion uplift at 10–40% for e-commerce sites, and the AI bot handles "where's my order?" and sizing questions automatically outside business hours. On a Shopify or WooCommerce store, Tidio installs in under an hour and starts working immediately.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Order management integration</p>
+        <p>The most common retail support queries — delivery status, returns, wrong items — require agents to pull order information from your platform (Shopify, WooCommerce, Magento). Freshdesk integrates with Shopify via its app marketplace, surfacing order details inside the ticket so agents don't need to tab between systems. Tidio has native Shopify order lookup built into the live chat widget. For Magento or custom platforms, Zapier or API integration is usually required.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Handling seasonal volume spikes</p>
+        <p>Black Friday, Christmas, and January sales create ticket volume spikes that can be 5–10× your normal rate. Your helpdesk tool needs to handle this without requiring you to permanently upgrade your plan. Freshdesk's per-agent pricing means adding a temporary seasonal agent for November–December is straightforward. Tidio's chatbot handles repetitive queries automatically, which dramatically reduces the human workload during peak periods — a chatbot that answers "when will my order arrive?" 500 times on Black Friday costs the same as when it answers it 50 times in October.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Multichannel: email, chat, social</p>
+        <p>UK retail customers contact brands through email, live chat, Instagram DMs, Facebook Messenger, and increasingly WhatsApp. Freshdesk's multichannel inbox consolidates all of these into one queue, so nothing falls through the gap. Tidio focuses on live chat and messaging channels. If your volume justifies it, running both tools gives you the best of both worlds — Tidio for real-time, Freshdesk for everything else.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">UK Consumer Rights Act compliance</p>
+        <p>UK retailers have specific obligations under the Consumer Rights Act 2015 — 30-day right to reject, repair/replace obligations, digital content rules. Your helpdesk should make it easy to track the date a complaint was raised and whether it falls within the statutory window. Freshdesk's ticket creation timestamp and custom fields handle this cleanly. Consider adding a "CRA complaint" tag to relevant tickets so you can report on them separately.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+    <div class="flex-1">
+      <p class="font-semibold text-gray-900 mb-1">Calculate annual support software costs for your team</p>
+      <p class="text-sm text-gray-600">Compare Tidio, Freshdesk, and LiveAgent side-by-side in GBP for your agent count.</p>
+    </div>
+    <a href="/it-help-desk-cost-calculator" class="shrink-0 bg-blue-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">Open Calculator →</a>
+  </div>
+
+  <section class="space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">What is the best live chat software for a UK Shopify store?</dt>
+        <dd class="mt-1">Tidio is the strongest choice for Shopify — one-click installation, built-in AI chatbot that handles order status queries automatically, and a free tier that covers small stores. Freshdesk's live chat widget also integrates with Shopify and is worth considering if you want your chat and email ticketing in one tool. For WooCommerce, both work equally well.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Do I need both live chat and a helpdesk for my e-commerce business?</dt>
+        <dd class="mt-1">At small scale (under 50 tickets/day), one tool that does both — Freshdesk or LiveAgent — is usually enough. At higher volume, specialist tools win: Tidio for live chat and pre-purchase engagement, Freshdesk for structured post-purchase ticket management. The combination is more powerful than either alone and doesn't cost much more than a single all-in-one platform at mid-scale.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">How do I handle returns and refunds through a help desk?</dt>
+        <dd class="mt-1">Create a dedicated "Returns & Refunds" ticket category with its own SLA (e.g., first response within 4 hours, resolved within 2 working days to stay within Consumer Rights Act windows). Use a canned response for the acknowledgement, a custom field for the order number, and automation to route these tickets to your most experienced agents. Freshdesk's automation rules handle all of this cleanly on the Growth plan.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="mt-12 border-t border-gray-200 pt-8">
+    <p class="text-sm font-semibold text-gray-900 mb-3">Also in this series</p>
+    <div class="flex flex-wrap gap-3 text-sm">
+      <a href="/best-help-desk-software-uk-small-business" class="text-blue-700 hover:underline">Best for UK Small Business →</a>
+      <a href="/best-help-desk-software-uk-accountancy-professional-services" class="text-blue-700 hover:underline">Best for Accountancy & Professional Services →</a>
+      <a href="/it-help-desk-cost-calculator" class="text-blue-700 hover:underline">Cost Calculator →</a>
+    </div>
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is the best live chat software for a UK Shopify store?", "acceptedAnswer": { "@type": "Answer", "text": "Tidio is the strongest choice for Shopify — one-click installation, built-in AI chatbot that handles order status queries automatically, and a free tier for small stores." } },
+      { "@type": "Question", "name": "Do I need both live chat and a helpdesk for my e-commerce business?", "acceptedAnswer": { "@type": "Answer", "text": "At small scale, one tool that does both is enough. At higher volume, Tidio for live chat and Freshdesk for structured ticketing is the more powerful combination." } }
+    ]
+  })} />
+</Layout>

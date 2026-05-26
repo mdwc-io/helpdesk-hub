@@ -1,0 +1,171 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ComparisonTable from "../components/ComparisonTable.tsx";
+import { software } from "../data/software";
+
+const picks = [
+  software.find((s) => s.id === "freshservice")!,
+  software.find((s) => s.id === "freshdesk")!,
+  software.find((s) => s.id === "jira-service-management")!,
+];
+
+const tableProducts = software.filter((s) =>
+  ["freshservice", "freshdesk", "jira-service-management", "zoho-desk"].includes(s.id)
+);
+
+const verdicts: Record<string, string> = {
+  freshservice:
+    "The best internal IT help desk for UK SMEs that have outgrown a shared inbox. Asset management, change management, and ITIL-aligned workflows are all built in — not add-ons. The pricing is higher than a plain helpdesk, but the time saved on manual asset tracking and change approval alone tends to justify it once you have more than 100 devices to manage.",
+  freshdesk:
+    "The right choice for SMEs whose 'IT support' is mostly responding to staff requests rather than managing a complex infrastructure. Simpler and cheaper than Freshservice, with a free tier that covers small teams well. If you don't need asset management or formal change management, Freshdesk is the more sensible tool.",
+  "jira-service-management":
+    "Best for SMEs that already use Jira for project management or software development. The integration between engineering and IT service tickets is the key differentiator — when your IT team and your dev team share infrastructure, having both in one platform saves real context-switching time. Not the right first tool for a team moving off email.",
+};
+---
+
+<Layout
+  title="Best Internal IT Help Desk & ITSM Software for UK SMEs (2026)"
+  description="Independent comparison of internal IT help desk and ITSM software for UK SMEs. Covers asset management, change management, ITIL alignment, and honest per-agent pricing in GBP."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 flex-wrap">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li><a href="/best-help-desk-software-uk-small-business" class="hover:text-blue-700">UK Small Business</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">Internal IT for UK SMEs</li>
+    </ol>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      Best Internal IT Help Desk & ITSM for UK SMEs (2026)
+    </h1>
+    <p class="text-sm text-gray-500">Last reviewed: May 2026 · By a UK IT &amp; Facilities Manager</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-sm text-blue-900 space-y-2">
+    <p class="font-semibold text-blue-800">Quick verdict</p>
+    <p>
+      For UK SMEs running a dedicated internal IT function, <strong>Freshservice</strong> is the strongest all-round choice — ITIL-aligned, includes asset management, and handles change and problem management without needing enterprise-scale budget. If your IT support is lighter (mostly responding to staff requests, fewer than 100 managed devices), <strong>Freshdesk</strong> does the job at a lower price. <strong>Jira Service Management</strong> is worth considering only if you already use Atlassian tools.
+    </p>
+  </div>
+
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Top picks for internal IT in UK SMEs</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {picks.map((product, i) => (
+        <ProductCard product={product} verdict={verdicts[product.id]} rank={i + 1} />
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Full comparison</h2>
+    <ComparisonTable client:visible products={tableProducts} />
+  </section>
+
+  <section class="mb-12 space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Helpdesk vs ITSM: which does your SME actually need?</h2>
+    <div class="space-y-4 text-sm text-gray-700">
+      <p>This is the most common question for UK SMEs setting up an internal IT function, and the answer depends on three things: team size, device count, and how formally you manage IT change.</p>
+
+      <div class="overflow-x-auto rounded-xl border border-gray-200">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-200">
+              <th class="text-left px-4 py-3 font-semibold text-gray-700">Your situation</th>
+              <th class="text-left px-4 py-3 font-semibold text-gray-700">Recommended approach</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {[
+              ["1–2 IT staff, under 50 devices, mostly reactive support", "Freshdesk free or Growth — no need for full ITSM overhead"],
+              ["2–5 IT staff, 50–200 devices, occasional planned changes", "Freshservice Starter — asset management and basic change management worth the cost"],
+              ["5+ IT staff, 200+ devices, regular change windows", "Freshservice Growth or Pro — full ITIL processes, business-hours SLA calendars, CMDB"],
+              ["IT team embedded with a dev/engineering team", "Jira Service Management — shared infrastructure and ticket visibility across both teams"],
+            ].map(([situation, recommendation]) => (
+              <tr class="hover:bg-gray-50">
+                <td class="px-4 py-3 text-gray-700">{situation}</td>
+                <td class="px-4 py-3 text-gray-700 font-medium">{recommendation}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-12 space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Key features for UK SME internal IT teams</h2>
+    <div class="space-y-5 text-sm text-gray-700">
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Asset management</p>
+        <p>Tracking every laptop, server, phone, and printer in a spreadsheet stops working around 50 devices. Freshservice's CMDB lets you track assets, link them to tickets (so you can see the full history of a device when it fails), set automated reminders for warranty renewals, and run reports on your estate. At the SME level, this is usually the single feature that makes ITSM worth the premium over a plain helpdesk.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Change management</p>
+        <p>Even at SME scale, uncontrolled changes cause incidents. A server update that takes down the VPN at 4pm on a Friday is preventable with a simple change approval workflow. Freshservice's change management doesn't require a full Change Advisory Board — you can set it as lightweight as a single approver on a group chat notification, with a formal record that protects the IT team if something goes wrong.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Self-service portal and knowledge base</p>
+        <p>A well-maintained knowledge base ("how do I connect to the VPN?", "how do I reset my password?") deflects 20–30% of repetitive tickets at no extra cost. Both Freshdesk and Freshservice include a knowledge base editor. The difference is that Freshservice's is more tightly integrated with the ticket workflow — agents can convert ticket resolutions into articles directly, which keeps the knowledge base current with minimal effort.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">SLA management and reporting</p>
+        <p>Internal IT SLAs (P1 resolved in 4 hours, P3 resolved in 3 working days) are only enforceable if the tool tracks and alerts on them automatically. Monthly SLA compliance reports are also the main evidence you can present to management to demonstrate IT performance and justify headcount or budget. Freshservice's reporting is stronger than Freshdesk's at the equivalent plan tier — worth factoring in if stakeholder reporting is important.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+    <div class="flex-1">
+      <p class="font-semibold text-gray-900 mb-1">Work out the annual cost for your IT team</p>
+      <p class="text-sm text-gray-600">Compare Freshservice, Freshdesk, and Jira Service Management side-by-side in GBP for your exact agent count.</p>
+    </div>
+    <a href="/it-help-desk-cost-calculator" class="shrink-0 bg-blue-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">Open Calculator →</a>
+  </div>
+
+  <section class="space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">What is the difference between a help desk and ITSM for an SME?</dt>
+        <dd class="mt-1">A help desk manages incoming requests and incidents — staff submit a problem, IT fixes it, ticket closes. ITSM (IT Service Management) adds structured processes on top: asset tracking, change management, problem management (finding root causes rather than just fixing symptoms), and a CMDB. Most SMEs with under 50 devices and one IT person don't need full ITSM. Once you have multiple IT staff, 100+ devices, and regular planned maintenance, ITSM processes pay for themselves.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Is Freshservice ITIL-certified?</dt>
+        <dd class="mt-1">Freshservice is designed around ITIL 4 principles and includes the core ITIL processes — incident management, problem management, change management, and service request management. It is not formally ITIL-certified (that's a process certification, not a product one), but it is aligned with ITIL best practice and is commonly used by UK organisations that follow ITIL frameworks.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Can Freshservice handle both internal IT and facilities management?</dt>
+        <dd class="mt-1">Yes — this is an underused feature for UK facilities and IT managers who cover both functions. Freshservice's workspaces let you run IT and Facilities as separate service desks within the same account, with different agents, SLAs, and ticket categories. Facilities requests (office access, equipment faults, maintenance) stay separate from IT tickets but visible to the same management team. Worth setting up from day one if you manage both functions.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="mt-12 border-t border-gray-200 pt-8">
+    <p class="text-sm font-semibold text-gray-900 mb-3">Also in this series</p>
+    <div class="flex flex-wrap gap-3 text-sm">
+      <a href="/best-help-desk-software-uk-small-business" class="text-blue-700 hover:underline">Best for UK Small Business (hub) →</a>
+      <a href="/best-help-desk-software-uk-msps" class="text-blue-700 hover:underline">Best for UK MSPs →</a>
+      <a href="/best-it-ticketing-uk-logistics-manufacturing" class="text-blue-700 hover:underline">Best for UK Logistics & Manufacturing →</a>
+      <a href="/it-help-desk-cost-calculator" class="text-blue-700 hover:underline">Cost Calculator →</a>
+    </div>
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is the difference between a help desk and ITSM for an SME?", "acceptedAnswer": { "@type": "Answer", "text": "A help desk manages incoming requests and incidents. ITSM adds asset tracking, change management, problem management, and a CMDB. Most SMEs with under 50 devices don't need full ITSM." } },
+      { "@type": "Question", "name": "Can Freshservice handle both internal IT and facilities management?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — Freshservice's workspaces let you run IT and Facilities as separate service desks within the same account, with different agents, SLAs, and ticket categories." } }
+    ]
+  })} />
+</Layout>

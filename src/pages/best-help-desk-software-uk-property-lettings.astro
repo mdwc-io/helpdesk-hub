@@ -1,0 +1,144 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ComparisonTable from "../components/ComparisonTable.tsx";
+import { software } from "../data/software";
+
+const picks = [
+  software.find((s) => s.id === "freshdesk")!,
+  software.find((s) => s.id === "tidio")!,
+  software.find((s) => s.id === "zoho-desk")!,
+];
+
+const tableProducts = software.filter((s) =>
+  ["freshdesk", "tidio", "zoho-desk", "hubspot-service", "liveagent"].includes(s.id)
+);
+
+const verdicts: Record<string, string> = {
+  freshdesk:
+    "The strongest all-round helpdesk for UK lettings agencies and property management firms. Handles tenant maintenance requests, landlord queries, and applicant chasing in separate ticket queues; multichannel inbox consolidates email, live chat, and social; and EU data hosting covers GDPR obligations for the personal data flowing through a busy lettings business. The free tier is genuinely usable for smaller agencies.",
+  tidio:
+    "The best live chat tool for agency websites where applicants and prospective tenants browse outside office hours. The AI chatbot handles 'is this property still available?', 'how do I book a viewing?', and 'what's the deposit?' automatically. Not a full property management or ticketing system — pair with Freshdesk if you need structured maintenance ticket management.",
+  "zoho-desk":
+    "Best value for agencies already using Zoho CRM for their contact and property pipeline management. The suite integration means tenant and landlord records sync automatically — no duplicate data entry. Cheaper than Freshdesk at equivalent feature levels; the trade-off is a less polished interface and slower support from Zoho itself.",
+};
+---
+
+<Layout
+  title="Best Help Desk Software for UK Property & Lettings Agencies (2026)"
+  description="Independent comparison of help desk software for UK lettings agencies and property management firms. Covers tenant maintenance requests, landlord queries, live chat, and GDPR compliance."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 flex-wrap">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li><a href="/best-help-desk-software-uk-small-business" class="hover:text-blue-700">UK Small Business</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">Property & Lettings</li>
+    </ol>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      Best Help Desk Software for UK Property & Lettings Agencies (2026)
+    </h1>
+    <p class="text-sm text-gray-500">Last reviewed: May 2026 · By a UK IT &amp; Facilities Manager</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-sm text-blue-900 space-y-2">
+    <p class="font-semibold text-blue-800">Quick verdict</p>
+    <p>
+      UK lettings agencies deal with three distinct audiences — tenants, landlords, and applicants — each with different query types and urgency levels. <strong>Freshdesk</strong> handles all three cleanly in a single inbox with separate ticket routing, and the multichannel setup covers the email, live chat, and phone mix that most agencies run. Add <strong>Tidio</strong> on your website for out-of-hours enquiries and viewing bookings. For agencies already using Zoho CRM, <strong>Zoho Desk</strong> is the more integrated and cost-effective choice.
+    </p>
+  </div>
+
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Top picks for UK property & lettings agencies</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {picks.map((product, i) => (
+        <ProductCard product={product} verdict={verdicts[product.id]} rank={i + 1} />
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Full comparison</h2>
+    <ComparisonTable client:visible products={tableProducts} />
+  </section>
+
+  <section class="mb-12 space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">The specific support challenges UK lettings agencies face</h2>
+    <div class="space-y-5 text-sm text-gray-700">
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Managing three different audiences in one inbox</p>
+        <p>A tenant reporting a boiler fault, a landlord querying their statement, and an applicant chasing a reference check all require completely different responses, different SLA targets, and different routing. Running all three through a shared email inbox — the default for most agencies — means queries get missed, responses get delayed, and the wrong person sees the wrong information. Freshdesk's ticket routing rules separate these automatically: a query to maintenance@ goes to the property management team, a query to accounts@ goes to finance, regardless of which channel the contact used to send it.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Maintenance request tracking</p>
+        <p>Tenant maintenance requests are the highest-volume ticket type for most lettings agencies, and they have legally relevant timelines — urgent repairs (no heating, water leak) have different statutory timeframes than routine ones. A helpdesk with a maintenance-specific ticket category, an SLA that matches your contractual obligations, and an automated acknowledgement to the tenant ("we've received your request and will respond within 24 hours") handles this far more reliably than email. It also creates a timestamped audit trail if a dispute reaches a deposit scheme adjudicator or tribunal.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">End-of-tenancy volume spikes</p>
+        <p>Most UK lettings agencies experience predictable volume spikes at end-of-tenancy — deposit disputes, check-out queries, reference requests from new landlords. These arrive in clusters at tenancy renewal periods (often September and January). A helpdesk with canned responses for the most common end-of-tenancy queries and automated routing for deposit dispute tickets means your team handles the spike without a proportional increase in admin time.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Out-of-hours enquiries from applicants</p>
+        <p>Property applicants browse Rightmove and Zoopla in the evenings and on weekends — outside your office hours. A live chat widget with a chatbot (Tidio works well here) can handle "is this still available?", "can I book a viewing for Saturday?", and "what are the fees?" automatically, converting what would be a lost lead into a booked viewing. This is the single highest-ROI addition for agency websites that don't already have it.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">GDPR and ICO compliance</p>
+        <p>Lettings agencies process significant amounts of personal data: tenant financial information (referencing, credit checks), passport and ID copies, bank details. Under UK GDPR, this must be processed lawfully, stored securely, and deleted when no longer needed. Your helpdesk is a data processor — ensure your vendor will sign a DPA and that data is stored in the EU or UK. Freshdesk and Zoho Desk both provide this on paid plans. Review your ICO registration to confirm that using a helpdesk is covered under your current purposes of processing.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+    <div class="flex-1">
+      <p class="font-semibold text-gray-900 mb-1">Calculate annual costs for your agency team</p>
+      <p class="text-sm text-gray-600">Compare Freshdesk, Tidio, and Zoho Desk in GBP for your exact agent count.</p>
+    </div>
+    <a href="/it-help-desk-cost-calculator" class="shrink-0 bg-blue-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">Open Calculator →</a>
+  </div>
+
+  <section class="space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">What is the best way to manage tenant maintenance requests in the UK?</dt>
+        <dd class="mt-1">A dedicated helpdesk with a maintenance ticket category, automated acknowledgement emails, and SLA targets that reflect your contractual obligations is significantly more reliable than shared email. Freshdesk's free tier covers the basics for smaller agencies. The key features to configure from day one: a maintenance@ email address that auto-creates tickets, a canned acknowledgement response with a reference number, and an SLA that flags urgent repairs within 2 hours.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Does a lettings agency need live chat on its website?</dt>
+        <dd class="mt-1">If you're generating enquiries from Rightmove or Zoopla, yes — applicants who can't get an instant answer to a basic question during evening browsing simply move on to the next listing. Tidio's free tier handles basic live chat with an offline message form outside business hours. The AI chatbot on paid plans handles viewing bookings and availability queries automatically, which is particularly valuable for smaller agencies without weekend staff.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">How do I track deposit disputes through a help desk?</dt>
+        <dd class="mt-1">Create a "Deposit dispute" ticket tag and category with a dedicated SLA (disputes have defined timelines under TDS, MyDeposits, and DPS scheme rules). When a dispute is raised, tag the ticket with the relevant deposit scheme reference number and the tenancy end date. This creates a searchable, timestamped record that's invaluable if the scheme asks for evidence of correspondence. Freshdesk and Zoho Desk both support custom fields for this kind of structured data capture.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="mt-12 border-t border-gray-200 pt-8">
+    <p class="text-sm font-semibold text-gray-900 mb-3">Also in this series</p>
+    <div class="flex flex-wrap gap-3 text-sm">
+      <a href="/best-help-desk-software-uk-small-business" class="text-blue-700 hover:underline">Best for UK Small Business →</a>
+      <a href="/best-help-desk-software-uk-accountancy-professional-services" class="text-blue-700 hover:underline">Best for Accountancy & Professional Services →</a>
+      <a href="/best-help-desk-software-uk-ecommerce-retail" class="text-blue-700 hover:underline">Best for E-commerce & Retail →</a>
+      <a href="/it-help-desk-cost-calculator" class="text-blue-700 hover:underline">Cost Calculator →</a>
+    </div>
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is the best way to manage tenant maintenance requests in the UK?", "acceptedAnswer": { "@type": "Answer", "text": "A dedicated helpdesk with a maintenance ticket category, automated acknowledgement emails, and SLA targets that reflect your contractual obligations is significantly more reliable than shared email." } },
+      { "@type": "Question", "name": "Does a lettings agency need live chat on its website?", "acceptedAnswer": { "@type": "Answer", "text": "If you're generating enquiries from Rightmove or Zoopla, yes — applicants who can't get an instant answer during evening browsing move on to the next listing. Tidio's free tier covers basic live chat." } }
+    ]
+  })} />
+</Layout>

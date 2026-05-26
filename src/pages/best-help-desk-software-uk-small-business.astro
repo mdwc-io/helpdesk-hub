@@ -1,0 +1,154 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ComparisonTable from "../components/ComparisonTable.tsx";
+import { software } from "../data/software";
+
+const picks = [
+  software.find((s) => s.id === "freshdesk")!,
+  software.find((s) => s.id === "zoho-desk")!,
+  software.find((s) => s.id === "hubspot-service")!,
+];
+
+const tableProducts = software.filter((s) =>
+  ["freshdesk", "zoho-desk", "hubspot-service", "liveagent", "zendesk", "tidio"].includes(s.id)
+);
+
+const verdicts: Record<string, string> = {
+  freshdesk:
+    "The safest all-round choice for most UK small businesses. A generous free tier to get started, clean multichannel inbox, solid SLA management on paid plans, and EU data hosting for GDPR. It handles customer-facing support and internal IT equally well — which matters when your 'IT team' is one person wearing several hats.",
+  "zoho-desk":
+    "The best value paid option if you need more than the free tier. At roughly half the price of Freshdesk's Growth plan, Zoho Desk covers SLAs, automation, and reporting without a painful cost jump. Strongest if you're already using other Zoho apps (CRM, Books, etc.) — the suite integration is genuinely useful for small businesses.",
+  "hubspot-service":
+    "The right choice if customer relationships are central to your business — professional services, consultancies, agencies. The helpdesk shares a contact record with the CRM, so every support interaction sits alongside your sales history. Standalone, the paid tiers are expensive; the value only stacks up if you're using HubSpot CRM too.",
+};
+
+const verticals = [
+  { href: "/best-help-desk-software-uk-charities", label: "Charities & Non-Profits", desc: "Free tiers, TechSoup pricing, GDPR" },
+  { href: "/best-help-desk-software-uk-schools-mats", label: "Schools & Multi-Academy Trusts", desc: "ICO compliance, MIS integration, MAT management" },
+  { href: "/best-help-desk-software-uk-msps", label: "MSPs & IT Support Firms", desc: "Multi-tenancy, SLA management, RMM integration" },
+  { href: "/best-it-ticketing-uk-logistics-manufacturing", label: "Logistics & Manufacturing", desc: "Shift-based ops, asset management, WMS integration" },
+  { href: "/best-it-helpdesk-itsm-uk-smes", label: "Internal IT for UK SMEs", desc: "ITSM, asset tracking, change management" },
+  { href: "/best-help-desk-software-uk-ecommerce-retail", label: "E-commerce & Retail", desc: "Live chat, Shopify integration, order support" },
+  { href: "/best-help-desk-software-uk-accountancy-professional-services", label: "Accountancy & Professional Services", desc: "CRM integration, client portals, data protection" },
+  { href: "/best-help-desk-software-uk-property-lettings", label: "Property & Lettings Agencies", desc: "Tenant queries, maintenance tickets, multichannel" },
+];
+---
+
+<Layout
+  title="Best Help Desk Software for UK Small Business (2026)"
+  description="Independent comparison of the best help desk software for UK small businesses in 2026. Covers pricing in GBP, free tiers, GDPR compliance, and honest verdicts by vertical."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">Best for UK Small Business</li>
+    </ol>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+      Best Help Desk Software for UK Small Business (2026)
+    </h1>
+    <p class="text-sm text-gray-500">Last reviewed: May 2026 · By a UK IT &amp; Facilities Manager</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-sm text-blue-900 space-y-2">
+    <p class="font-semibold text-blue-800">Quick verdict</p>
+    <p>
+      <strong>Freshdesk</strong> is the best starting point for most UK small businesses — a usable free tier, clean interface, EU data hosting, and a straightforward upgrade path. <strong>Zoho Desk</strong> is the best-value paid option for teams that have outgrown free. <strong>HubSpot Service Hub</strong> is worth considering only if you already use HubSpot CRM. The right answer depends heavily on your sector — use the vertical guides below to go deeper.
+    </p>
+  </div>
+
+  <div class="mb-8">
+    <AffiliateDisclosure />
+  </div>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Top picks for UK small businesses</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {picks.map((product, i) => (
+        <ProductCard product={product} verdict={verdicts[product.id]} rank={i + 1} />
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Full comparison</h2>
+    <ComparisonTable client:visible products={tableProducts} />
+  </section>
+
+  <!-- Vertical hub -->
+  <section class="mb-12 space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Find the right tool for your sector</h2>
+    <p class="text-sm text-gray-600">The best help desk for a school IT team is different from the best one for an e-commerce business. We've written sector-specific guides for every major UK vertical:</p>
+    <div class="grid sm:grid-cols-2 gap-3">
+      {verticals.map(({ href, label, desc }) => (
+        <a href={href} class="group block border border-gray-200 rounded-xl p-4 hover:border-blue-300 hover:shadow-sm transition-all">
+          <p class="font-semibold text-gray-900 text-sm group-hover:text-blue-700 mb-0.5">{label}</p>
+          <p class="text-xs text-gray-500">{desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-12 space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">What UK small businesses actually need from a help desk</h2>
+    <div class="space-y-5 text-sm text-gray-700">
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Something your team will actually use</p>
+        <p>The most common reason help desk projects fail in small businesses isn't features or price — it's adoption. If the tool is confusing, staff route around it (back to email, WhatsApp, sticky notes). Freshdesk and Zoho Desk both have ticket submission flows that feel close enough to email that non-technical staff adopt them without training. That matters more than any feature on a comparison table.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">UK GDPR compliance</p>
+        <p>Any customer or employee data flowing through your help desk is personal data under UK GDPR. You need a vendor that offers a Data Processing Agreement (DPA), can confirm where your data is stored (EU or UK residency preferred), and has appropriate security certifications. Freshdesk, Zoho Desk, and HubSpot all meet this bar on paid plans. Always confirm in writing before processing personal data.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Realistic total cost of ownership</p>
+        <p>The advertised per-agent price is rarely the full cost. Check: what's the minimum number of seats? (HubSpot Starter has a 2-seat minimum.) Are add-ons like AI, advanced analytics, or extra storage charged separately? Is annual billing required to get the advertised price? Use our <a href="/it-help-desk-cost-calculator" class="text-blue-700 underline hover:text-blue-900">cost calculator</a> to get a side-by-side GBP comparison for your exact team size before committing.</p>
+      </div>
+      <div class="border-l-4 border-blue-200 pl-4 space-y-1">
+        <p class="font-semibold text-gray-900">Room to grow</p>
+        <p>Small businesses grow, and switching help desk tools is painful — data migration, staff retraining, rebuilding your automation rules. Pick a platform that has a clear upgrade path you can afford when you outgrow the entry tier. Freshdesk's Growth → Pro → Enterprise path is well-defined and reasonably priced. Zendesk's equivalent jump is much steeper — fine if you're already at enterprise scale, painful if you hit it unexpectedly as a small business.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-12 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+    <div class="flex-1">
+      <p class="font-semibold text-gray-900 mb-1">Calculate the annual cost for your team</p>
+      <p class="text-sm text-gray-600">Enter your agent count and plan tier for a live side-by-side GBP comparison.</p>
+    </div>
+    <a href="/it-help-desk-cost-calculator" class="shrink-0 bg-blue-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">Open Calculator →</a>
+  </div>
+
+  <section class="space-y-5">
+    <h2 class="text-2xl font-bold text-gray-900">Frequently asked questions</h2>
+    <dl class="space-y-5 text-sm text-gray-700">
+      <div>
+        <dt class="font-semibold text-gray-900">What is the best free help desk software for UK small businesses?</dt>
+        <dd class="mt-1">Freshdesk's free plan is the strongest option — no time limit, no agent cap, and a usable feature set for basic email ticketing. Zoho Desk is free for up to 3 agents. HubSpot Service Hub has a free tier that's genuinely useful if you also use their free CRM. For most small businesses, Freshdesk free is the right place to start before paying for anything.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Is Zendesk worth it for a small UK business?</dt>
+        <dd class="mt-1">Rarely. Zendesk's entry price is significantly higher than Freshdesk and Zoho Desk, and its feature set is optimised for larger support teams. Unless you're running high-volume customer support (thousands of tickets per month) or have enterprise compliance requirements, the cost-to-value ratio doesn't work for small UK businesses. Start with Freshdesk and revisit Zendesk when you're genuinely outgrowing it.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900">Do I need different software for internal IT support vs customer support?</dt>
+        <dd class="mt-1">Depends on scale. Most small businesses (under 50 staff) run both through Freshdesk or Zoho Desk — separate inboxes and ticket queues handle the routing. Once your internal IT function becomes complex enough to need asset management, change management, and a CMDB, it's worth moving internal IT to a dedicated ITSM tool like Freshservice while keeping customer support on Freshdesk.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is the best free help desk software for UK small businesses?", "acceptedAnswer": { "@type": "Answer", "text": "Freshdesk's free plan is the strongest option — no time limit, no agent cap, and a usable feature set for basic email ticketing." } },
+      { "@type": "Question", "name": "Is Zendesk worth it for a small UK business?", "acceptedAnswer": { "@type": "Answer", "text": "Rarely. Zendesk's entry price is significantly higher than Freshdesk and Zoho Desk, and its feature set is optimised for larger support teams." } },
+      { "@type": "Question", "name": "Do I need different software for internal IT support vs customer support?", "acceptedAnswer": { "@type": "Answer", "text": "Most small businesses run both through Freshdesk or Zoho Desk. Once internal IT needs asset management and a CMDB, move it to Freshservice while keeping customer support on Freshdesk." } }
+    ]
+  })} />
+</Layout>
