@@ -1,0 +1,108 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="About HelpDesk Guide | Editorial Policy & Affiliate Disclosure"
+  description="Who runs HelpDesk Guide, how we choose our recommendations, and our full affiliate disclosure. Written by a UK IT & Facilities Manager with real service desk experience."
+>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2">
+      <li><a href="/" class="hover:text-blue-700">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-900 font-medium">About</li>
+    </ol>
+  </nav>
+
+  <div class="mb-10">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">About HelpDesk Guide</h1>
+    <p class="text-sm text-gray-500">Independent IT help desk software comparisons for UK teams</p>
+  </div>
+
+  <div class="space-y-12 max-w-2xl">
+
+    <!-- Who runs this -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-bold text-gray-900">Who writes this site</h2>
+      <div class="space-y-3 text-sm text-gray-700">
+        <p>
+          HelpDesk Guide is written and maintained by a UK IT &amp; Facilities Manager who has run a real service desk for a logistics and facilities operation for several years. The recommendations on this site come from direct, day-to-day experience with help desk software — not from a marketing agency, a vendor-funded content team, or an SEO generalist who has never raised a P1 ticket at 2am.
+        </p>
+        <p>
+          The site was built because most "best help desk software" content online is either US-centric (wrong pricing, wrong data residency assumptions, wrong compliance context for UK buyers) or written by people who have never actually used the tools they're recommending. This site tries to fix that.
+        </p>
+      </div>
+    </section>
+
+    <!-- How we pick -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-bold text-gray-900">How we choose recommendations</h2>
+      <div class="space-y-3 text-sm text-gray-700">
+        <p>Every product on this site is assessed against criteria that matter to UK buyers specifically:</p>
+        <ul class="space-y-2 pl-4">
+          {[
+            "UK or EU data residency — not just 'GDPR compliant' marketing language",
+            "Realistic GBP pricing, not USD-converted estimates",
+            "Fit for the vertical — what works for a school IT team is different from what works for an MSP",
+            "Honest cons — every product has weaknesses, and we say what they are",
+            "Editorial score based on real-world usability, not feature-count spreadsheets",
+          ].map((item) => (
+            <li class="flex items-start gap-2">
+              <span class="text-blue-500 mt-0.5 shrink-0">→</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p>
+          No vendor pays for placement, a higher score, or preferential positioning in a comparison table. Rankings reflect editorial judgement only. If that changes, this page will say so.
+        </p>
+      </div>
+    </section>
+
+    <!-- Affiliate disclosure -->
+    <section class="space-y-4" id="affiliate-disclosure">
+      <h2 class="text-xl font-bold text-gray-900">Affiliate disclosure</h2>
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 space-y-3 text-sm text-amber-900">
+        <p>
+          <strong>Some links on this site are affiliate links.</strong> This means that if you click a link and sign up for a paid plan, we may earn a commission — typically a percentage of the subscription fee for the first year. This comes at no extra cost to you; you pay exactly the same price whether you use our link or go directly to the vendor's website.
+        </p>
+        <p>
+          Affiliate income is how this site is funded. It allows us to spend time researching, writing, and maintaining genuinely useful content rather than charging readers or taking vendor sponsorship fees.
+        </p>
+        <p>
+          <strong>Affiliate relationships do not influence our rankings or recommendations.</strong> We recommend Freshdesk and Zoho Desk because they are genuinely strong products for UK SMEs — not because they pay a commission. Zendesk and Jira Service Management are included in comparisons even though neither has an active affiliate programme. If a product is the wrong choice for a particular use case, we say so regardless of whether we earn anything from it.
+        </p>
+        <p>
+          All affiliate links are labelled with <code class="bg-amber-100 px-1 rounded text-xs">rel="sponsored nofollow"</code> in the HTML, in line with Google's guidelines and UK ASA/CMA requirements for affiliate content.
+        </p>
+      </div>
+    </section>
+
+    <!-- Pricing disclaimer -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-bold text-gray-900">A note on pricing</h2>
+      <div class="space-y-3 text-sm text-gray-700">
+        <p>
+          All prices shown on this site are indicative figures in GBP, based on publicly available pricing at the time of writing. Vendor pricing changes regularly — sometimes significantly. Always verify current pricing on the vendor's own website before making a purchasing decision.
+        </p>
+        <p>
+          Where prices are shown in GBP but a vendor bills in USD, we note this. Currency conversion fluctuates, so the actual GBP charge on your invoice may differ from the figures shown.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-bold text-gray-900">Corrections and contact</h2>
+      <div class="space-y-3 text-sm text-gray-700">
+        <p>
+          If you spot an error — a price that's out of date, a product feature that's changed, or anything factually incorrect — please get in touch. Keeping this content accurate is important to us, and we'd rather be corrected than leave wrong information live.
+        </p>
+        <p>
+          You can reach us at: <a href="mailto:hello@helpdeskguide.co.uk" class="text-blue-700 underline hover:text-blue-900">hello@helpdeskguide.co.uk</a>
+        </p>
+      </div>
+    </section>
+
+  </div>
+</Layout>
